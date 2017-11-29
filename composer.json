@@ -1,0 +1,32 @@
+{
+    "name": "uml/r-e-c",
+    "type": "project",
+    "description": "",
+    "authors": [
+        {
+            "name": "Hendell Jonathan Porras Perez",
+            "email": "hendelporras@hotmail.com",
+            "homepage": "http://nt5.info",
+            "role": "Main Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "REC\\": "res/php"
+        }
+    },
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.6",
+        "twig/twig": "1.*",
+        "twig/extensions": "1.*"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "bower install"
+        ],
+        "post-install-cmd": [
+            "bower install"
+        ]
+    }
+}
