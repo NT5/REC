@@ -1,0 +1,14 @@
+Options All -Indexes
+
+RewriteEngine On
+
+RewriteRule ^res/libs/jquery(/.*)?$ ./bower_components/jquery/dist/$1
+RewriteRule ^res/libs/materialize(/.*)?$ ./bower_components/materialize/dist/$1
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+<Files config.ini>
+    order allow,deny
+    deny from all
+</Files>

@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "REC\\": "res/php"
+            "REC\\": "res/php",
+            "REC\\Modules\\": "res/php/Modules"
         }
     },
     "license": "Apache-2.0",
