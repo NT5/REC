@@ -1,6 +1,6 @@
 <?php
 
-namespace REC\Modules\Logger;
+namespace REC\Modules\Basics\Logger;
 
 /**
  * @todo Documentacion

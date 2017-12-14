@@ -1,8 +1,8 @@
 <?php
 
-namespace REC\Modules;
+namespace REC\Modules\Basics;
 
-use REC\Modules\Logger;
+use REC\Modules\Basics\Logger;
 use REC\Modules\Factory;
 
 /**
@@ -32,15 +32,20 @@ class Logger extends Factory\ModuleClass {
     }
 
     /** Metodo que guarda un nuevo registro en la instacia
-     * @param string $area Lugar donde se guardara el registro
      * @param string $string Texto que se guarda (puede incluir formato) <b>Ejm: Hola %s!</b>
      * @param string $format Lista de valores que se usaran si el texto posee un formato
      */
     public function setLog($string, ...$format) {
         $trace_arr = debug_backtrace(FALSE, $this->TraceSteps);
         $trace = end($trace_arr);
-        $this->Logs[$trace['class']][] = new Logger\Log(
-                $trace['class'], $trace['function'], $trace['file'], $trace['line'], microtime(true), date('m/d/Y h:i:sa', time()), sprintf($string, ...$format)
+
+        $class_name = array_key_exists('class', $trace) ? $trace['class'] : "Unknown";
+        $class_function = array_key_exists('function', $trace) ? $trace['function'] : "foo";
+        $class_file = array_key_exists('file', $trace) ? $trace['file'] : "default.php";
+        $class_line = array_key_exists('line', $trace) ? $trace['line'] : 0;
+
+        $this->Logs[$class_name][] = new Logger\Log(
+                $class_name, $class_function, $class_file, $class_line, microtime(true), date('m/d/Y h:i:sa', time()), sprintf($string, ...$format)
         );
     }
 
@@ -60,6 +65,14 @@ class Logger extends Factory\ModuleClass {
      */
     public function getLog($class) {
         return (array_key_exists($class, $this->getLogs()) ? $this->Logs[$class] : FALSE);
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getLogCount() {
+        return array_sum(array_map("count", $this->getLogs()));
     }
 
     /**
