@@ -11,12 +11,6 @@ use REC\Modules\Basics\Error;
 class Error {
 
     /**
-     * 
-     * @var string 
-     */
-    private $Error_Class;
-
-    /**
      *
      * @var \REC\Modules\Basics\Error\ErrorCodes 
      */
@@ -29,20 +23,10 @@ class Error {
     private $Error_Time;
 
     /**
-     *
-     * @var int 
-     */
-    private $TraceSteps = 3;
-
-    /**
      * Regresa instancia de errores de la pagina web
      * @param \REC\Modules\Basics\Error\ErrorCodes $error
      */
     public function __construct(Error\ErrorCodes $error) {
-        $trace_arr = debug_backtrace(FALSE, $this->TraceSteps);
-        $trace = end($trace_arr);
-
-        $this->Error_Class = $trace['class'];
         $this->Error_Code = $error;
         $this->Error_Time = microtime(true);
     }
@@ -52,14 +36,6 @@ class Error {
      */
     public function getErrorCode() {
         return $this->Error_Code;
-    }
-
-    /**
-     * 
-     * @return string
-     */
-    public function getErrorClass() {
-        return $this->Error_Class;
     }
 
     /**

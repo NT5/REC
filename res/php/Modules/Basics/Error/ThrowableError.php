@@ -23,6 +23,12 @@ interface ThrowableError {
 
     /**
      * 
+     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     */
+    public function hasError(Error\ErrorCodes $Error);
+
+    /**
+     * 
      * @return array
      */
     public function getErrors();

@@ -30,7 +30,7 @@ class ErrorSet extends Factory\ModuleClass {
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
      */
     public function addError(Basics\Error\ErrorCodes $Error) {
-        $this->Errors[] = new Basics\Error($Error);
+        $this->Errors[$Error->getError_Code()] = new Basics\Error($Error);
     }
 
     /**
@@ -39,6 +39,15 @@ class ErrorSet extends Factory\ModuleClass {
      */
     public function getErrors() {
         return $this->Errors;
+    }
+
+    /**
+     * 
+     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @return boolean
+     */
+    public function hasError(Basics\Error\ErrorCodes $Error) {
+        return (array_key_exists($Error->getError_Code(), $this->getErrors()));
     }
 
 }
