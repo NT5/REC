@@ -3,12 +3,13 @@
 namespace REC\Modules\Basics\Error;
 
 use REC\Modules\Basics;
+use REC\Modules\Basics\Error;
 use REC\Modules\Factory;
 
 /**
  * @todo Documentacion
  */
-class ErrorSet extends Factory\ModuleClass {
+class ErrorSet extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      *
@@ -48,6 +49,14 @@ class ErrorSet extends Factory\ModuleClass {
      */
     public function hasError(Basics\Error\ErrorCodes $Error) {
         return (array_key_exists($Error->getError_Code(), $this->getErrors()));
+    }
+
+    /**
+     * 
+     * @return \REC\Modules\Basics\Error\ErrorSet
+     */
+    public function getErrorSet() {
+        return $this;
     }
 
 }

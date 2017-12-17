@@ -8,4 +8,9 @@
             <directory>res/php/Test/Basics</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">res/php/Test/Basics</directory>
+        </whitelist>
+    </filter>
 </phpunit>

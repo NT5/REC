@@ -3,12 +3,13 @@
 namespace REC\Modules\Basics\Warning;
 
 use REC\Modules\Basics;
+use REC\Modules\Basics\Warning;
 use REC\Modules\Factory;
 
 /**
  * @todo Documentacion
  */
-class WarningSet extends Factory\ModuleClass {
+class WarningSet extends Factory\ModuleClass implements Warning\ThrowableWarning {
 
     /**
      *
@@ -35,6 +36,23 @@ class WarningSet extends Factory\ModuleClass {
      */
     public function getWarnings() {
         return $this->Warnings;
+    }
+
+    /**
+     * 
+     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
+     * @return boolean
+     */
+    public function hasWarning(Warning\WarningCodes $Warning) {
+        return (array_key_exists($Warning->getWarning_Code(), $this->getWarnings()));
+    }
+
+    /**
+     * 
+     * @return \REC\Modules\Basics\Warning\WarningSet
+     */
+    public function getWarningSet() {
+        return $this;
     }
 
 }

@@ -13,6 +13,7 @@ class ErrorSetTest extends TestCase {
 
         $this->assertInstanceOf(Factory\ModuleClass::class, $ErrorSet);
         $this->assertInstanceOf(Error\ErrorSet::class, $ErrorSet);
+        $this->assertInstanceOf(Error\ErrorSet::class, $ErrorSet->getErrorSet());
     }
 
     public function testErrorSetAdition() {

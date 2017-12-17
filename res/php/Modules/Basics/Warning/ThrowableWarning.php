@@ -17,9 +17,15 @@ interface ThrowableWarning {
 
     /**
      * 
-     * @param int $Warning
+     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
      */
     public function addWarning(Warning\WarningCodes $Warning);
+
+    /**
+     * 
+     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
+     */
+    public function hasWarning(Warning\WarningCodes $Warning);
 
     /**
      * 
