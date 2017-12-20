@@ -28,4 +28,4 @@ deploy:app:
   stage: deploy
   environment: REC
   script:
-  - git clone http://gitlab.nt5.info:8000/UML/REC.git
+  - echo "aaaa"
