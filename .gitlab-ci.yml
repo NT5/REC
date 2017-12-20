@@ -21,14 +21,11 @@ test:app:
   stage: test
   script:
   - php vendor/bin/phpunit --coverage-text --colors=never
-  
+
 deploy:app:
   stage: deploy
   script:
-  - mkdir -p ~/.ssh
   - eval $(ssh-agent -s)
-  - '[[ -f /.dockerenv ]] && echo -e "Host *ntStrictHostKeyChecking nonn" > ~/.ssh/config'
-  - ssh-add <(echo "$STAGING_PRIVATE_KEY")
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - ssh -p22 uml@nt5.info "mkdir -p /home/uml/public_html/_tmp"
   - rsync -rav -e ssh --exclude='.git/' --exclude='.gitlab-ci.yml' --delete-excluded ./ uml@nt5.info:/home/uml/public_html/_tmp
-  - ssh -p22 uml@nt5.info "rm -rf /home/uml/public_html/_old"
