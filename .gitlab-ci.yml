@@ -35,4 +35,4 @@ deploy:app:
 deploy:docs:
   stage: deploy
   script:
-  - php php vendor/bin/phpdoc -d ./res/php/ -t ./docs/api
+  - php vendor/bin/phpdoc -d ./res/php/ -t ./docs/api
