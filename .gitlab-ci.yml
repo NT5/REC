@@ -19,15 +19,11 @@ before_script:
 
 test:app:
   stage: test
-  tags:
-  - PHPUnit
   script:
   - php vendor/bin/phpunit --coverage-text --colors=never
   
 deploy:app:
-  stage: test
-  tags:
-  - REC
+  stage: deploy
   script:
   - if [ -z "$webroot" ]; then echo "Need to set webroot" && exit 1; fi
   - sudo rsync -rv ./ $webroot --exclude '.git' --exclude '.gitlab-ci.yml' --exclude '.gitignore' --delete
