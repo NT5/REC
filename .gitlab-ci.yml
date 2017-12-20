@@ -27,5 +27,11 @@ deploy:app:
   script:
   - eval $(ssh-agent -s)
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - echo "$SSH_PRIVATE_KEY"
+  - ssh-add -l
+  - ssh uml@nt5.info
+
   - ssh -p22 uml@nt5.info "mkdir -p /home/uml/public_html/_tmp"
   - rsync -rav -e ssh --exclude='.git/' --exclude='.gitlab-ci.yml' --delete-excluded ./ uml@nt5.info:/home/uml/public_html/_tmp
