@@ -3,6 +3,11 @@ image: php:5.6
 cache:
   paths:
   - vendor/
+  - bower_components/
+
+stages:
+  - test
+  - deploy
 
 before_script:
 - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
@@ -13,5 +18,14 @@ before_script:
 - php composer.phar install
 
 test:app:
+  stage: test
+  tags:
+   - test
   script:
   - php vendor/bin/phpunit --coverage-text --colors=never 
+
+deploy:app:
+  stage: deploy
+  environment: REC
+  script:
+  - git clone http://gitlab.nt5.info:8000/UML/REC.git
