@@ -7,8 +7,8 @@ cache:
   - docs/cache
 
 variables:
-  - DOCS_FOLDER: "./docs"
-  - SRC_FOLDER: "./res/php"
+  DOCS_FOLDER: "./docs"
+  SRC_FOLDER: "./res/php"
 
 stages:
   - test
