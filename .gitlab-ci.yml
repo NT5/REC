@@ -34,6 +34,12 @@ docs:app:
   - wget -q http://phpdoc.org/phpDocumentor.phar
   - mkdir -p ./docs/api/
   - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api/ --cache-folder ./docs/cache/
+  
+docs:metrics:
+  stage: docs
+  script:
+  - wget -q https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.2/phpmetrics.phar
+  - php phpmetrics.phar --report-html=./docs/metrics.html ./
 
 deploy:app:
   stage: deploy
