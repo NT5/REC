@@ -24,15 +24,6 @@
         "twig/extensions": "1.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "phpdocumentor/phpdocumentor": "2.*"
-    },
-    "scripts": {
-        "post-update-cmd": [
-            "bower install"
-        ],
-        "post-install-cmd": [
-            "bower install"
-        ]
+        "phpunit/phpunit": "^5.7"
     }
 }

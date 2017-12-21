@@ -7,20 +7,26 @@ cache:
 
 stages:
   - test
+  - docs
   - deploy
-
-before_script:
-- wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
-- php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-- php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-- php composer-setup.php
-- php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-- php composer.phar install
 
 test:app:
   stage: test
   script:
+  - wget https://getcomposer.org/composer.phar
+  - php composer.phar install
   - php vendor/bin/phpunit --coverage-text --colors=never
+
+deploy:docs:
+  stage: docs
+  script:
+  - wget http://phpdoc.org/phpDocumentor.phar
+  - php phpDocumentor.phar -d ./res/php/ -t ./docs/api
+
+deploy:frontend:
+  stage: deploy
+  script:
+  - bower install
 
 deploy:app:
   stage: deploy
@@ -31,8 +37,3 @@ deploy:app:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   - ssh -p22 $SSH_HOST "mkdir -p $SSH_DIR"
   - rsync -rav -e ssh --exclude='.git/' --exclude='.gitlab-ci.yml' --exclude='*.phar' --delete-excluded ./ $SSH_HOST:$SSH_DIR
-
-deploy:docs:
-  stage: deploy
-  script:
-  - php vendor/bin/phpdoc -d ./res/php/ -t ./docs/api
