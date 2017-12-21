@@ -21,6 +21,7 @@ deploy:docs:
   stage: docs
   script:
   - wget http://phpdoc.org/phpDocumentor.phar
+  - mkdir -p ./docs/api
   - php phpDocumentor.phar -d ./res/php/ -t ./docs/api
 
 deploy:frontend:
