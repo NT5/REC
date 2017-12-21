@@ -4,6 +4,7 @@ cache:
   paths:
   - vendor/
   - bower_components/
+  - docs/cache
 
 stages:
   - test
@@ -13,16 +14,16 @@ stages:
 test:app:
   stage: test
   script:
-  - wget https://getcomposer.org/composer.phar
+  - wget -q https://getcomposer.org/composer.phar
   - php composer.phar install
   - php vendor/bin/phpunit --coverage-text --colors=never
 
 deploy:docs:
   stage: docs
   script:
-  - wget http://phpdoc.org/phpDocumentor.phar
+  - wget -q http://phpdoc.org/phpDocumentor.phar
   - mkdir -p ./docs/api
-  - php phpDocumentor.phar -d ./res/php/ -t ./docs/api
+  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api --cache-folder ./docs/cache --template responsive-twig
 
 deploy:frontend:
   stage: deploy
