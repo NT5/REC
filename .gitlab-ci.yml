@@ -4,33 +4,34 @@ cache:
   paths:
   - vendor/
   - bower_components/
-  - docs/cache
-
-variables:
-  DOCS_FOLDER: "./docs"
-  SRC_FOLDER: "./res/php"
+  - docs/cache/
 
 stages:
+  - build
   - test
   - docs
   - deploy
 
-test:phpunit:
-  stage: test
+build:app:
+  stage: build
   script:
   - wget -q https://getcomposer.org/composer.phar
   - php composer.phar install
+
+test:phpunit:
+  stage: test
+  script:
   - php vendor/bin/phpunit --coverage-text --colors=never
 
 docs:app:
   stage: docs
   script:
   - wget -q http://phpdoc.org/phpDocumentor.phar
-  - mkdir -p $DOCS_FOLDER/api/
-  - php phpDocumentor.phar --directory $SRC_FOLDER/ --target $DOCS_FOLDER/api/ --cache-folder $DOCS_FOLDER/cache/
+  - mkdir -p ./docs/api/
+  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api/ --cache-folder ./docs/cache/
 
-deploy:frontend:
-  stage: deploy
+build:frontend:
+  stage: build
   script:
   - bower install
 
@@ -42,4 +43,4 @@ deploy:app:
   - mkdir -p ~/.ssh
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   - ssh -p22 $SSH_HOST "mkdir -p $SSH_DIR"
-  - rsync -rav -e ssh --exclude='.git/' --exclude='$DOCS_FOLDER/cache/*' --exclude='.gitlab-ci.yml' --exclude='*.phar' --delete-excluded ./ $SSH_HOST:$SSH_DIR
+  - rsync -rav -e ssh --exclude='.git/' --exclude='docs/cache/' --exclude='.gitlab-ci.yml' --exclude='*.phar' --delete-excluded ./ $SSH_HOST:$SSH_DIR
