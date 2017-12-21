@@ -14,26 +14,42 @@ stages:
 
 build:app:
   stage: build
+  artifacts:
+    untracked: true
+    paths:
+    - vendor/
   script:
   - wget -q https://getcomposer.org/composer.phar
   - php composer.phar install
-
-test:phpunit:
-  stage: test
-  script:
-  - php vendor/bin/phpunit --coverage-text --colors=never
-
-docs:app:
-  stage: docs
-  script:
-  - wget -q http://phpdoc.org/phpDocumentor.phar
-  - mkdir -p ./docs/api/
-  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api/ --cache-folder ./docs/cache/
 
 build:frontend:
   stage: build
   script:
   - bower install
+  artifacts:
+    untracked: true
+    paths:
+    - bower_components/
+
+test:phpunit:
+  stage: test
+  script:
+  - php vendor/bin/phpunit --coverage-text --colors=never
+  dependencies:
+  - build:app
+
+docs:app:
+  stage: docs
+  artifacts:
+    untracked: true
+    paths:
+    - docs/api/
+  script:
+  - wget -q http://phpdoc.org/phpDocumentor.phar
+  - mkdir -p ./docs/api/
+  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api/ --cache-folder ./docs/cache/
+  dependencies:
+  - build:app
 
 deploy:app:
   stage: deploy
@@ -44,3 +60,7 @@ deploy:app:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   - ssh -p22 $SSH_HOST "mkdir -p $SSH_DIR"
   - rsync -rav -e ssh --exclude='.git/' --exclude='docs/cache/' --exclude='.gitlab-ci.yml' --exclude='*.phar' --delete-excluded ./ $SSH_HOST:$SSH_DIR
+  dependencies:
+  - build:app
+  - docs:app
+  - build:frontend
