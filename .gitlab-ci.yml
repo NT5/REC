@@ -23,7 +23,7 @@ deploy:docs:
   script:
   - wget -q http://phpdoc.org/phpDocumentor.phar
   - mkdir -p ./docs/api
-  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api --cache-folder ./docs/cache --template responsive-twig
+  - php phpDocumentor.phar --directory ./res/php/ --target ./docs/api --cache-folder ./docs/cache
 
 deploy:frontend:
   stage: deploy
