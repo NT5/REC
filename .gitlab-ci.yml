@@ -31,7 +31,7 @@ test:phpunit:
 docs:app:
   stage: docs
   environment:
-    name: production
+    name: Docs Production
     url: http://test.uml.nt5.info/docs/api
   script:
   - wget -q http://phpdoc.org/phpDocumentor.phar
@@ -41,7 +41,7 @@ docs:app:
 docs:metrics:
   stage: docs
   environment:
-    name: production
+    name: Metrics Production
     url: http://test.uml.nt5.info/docs/metrics
   script:
   - wget -q https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.2/phpmetrics.phar
@@ -50,7 +50,7 @@ docs:metrics:
 deploy:app:
   stage: deploy
   environment:
-    name: production
+    name: Production
     url: http://test.uml.nt5.info
   script:
   - eval $(ssh-agent -s)
