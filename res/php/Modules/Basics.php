@@ -59,7 +59,9 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
      * @param string $format
      */
     public function setLog($string, ...$format) {
-        $this->getLogger()->setLog($string, ...$format);
+        $Logger = $this->getLogger();
+
+        $Logger->setLog($string, ...$format);
     }
 
     /**
@@ -78,6 +80,17 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
         $ErrorSet = $this->getErrorSet();
 
         $ErrorSet->addError($Error);
+    }
+
+    /**
+     * 
+     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @return boolean
+     */
+    public function hasError(Basics\Error\ErrorCodes $Error) {
+        $ErrorSet = $this->getErrorSet();
+
+        return $ErrorSet->hasError($Error);
     }
 
     /**
@@ -105,6 +118,17 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
         $WarningSet = $this->getWarningSet();
 
         $WarningSet->addWarning($Warning);
+    }
+
+    /**
+     * 
+     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
+     * @return boolean
+     */
+    public function hasWarning(Basics\Warning\WarningCodes $Warning) {
+        $WarningSet = $this->getWarningSet();
+
+        return $WarningSet->hasWarning($Warning);
     }
 
     /**
