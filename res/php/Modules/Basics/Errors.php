@@ -28,9 +28,11 @@ class Errors extends Factory\ModuleClass implements Error\ThrowableError {
     /**
      * 
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @return \REC\Modules\Basics\Errors
      */
     public function addError(Error\ErrorCodes $Error) {
         $this->Errors[$Error->getError_Code()] = new Error\ErrorStructure($Error);
+        return $this;
     }
 
     /**

@@ -18,6 +18,7 @@ interface ThrowableError {
     /**
      * 
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @return \REC\Modules\Basics\Errors
      */
     public function addError(Error\ErrorCodes $Error);
 

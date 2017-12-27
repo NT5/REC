@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class ErrorsTest extends TestCase {
 
+    /**
+     *  @covers Basics\Errors
+     */
     public function testErrorsCreation() {
         $Errors = new Basics\Errors();
 
@@ -17,6 +20,9 @@ class ErrorsTest extends TestCase {
         $this->assertInstanceOf(Basics\Errors::class, $Errors->getErrorSet());
     }
 
+    /**
+     * @covers Basics\Errors::addError
+     */
     public function testErrorsAdition() {
         $Errors = new Basics\Errors();
 
@@ -42,6 +48,9 @@ class ErrorsTest extends TestCase {
         );
     }
 
+    /**
+     * @covers Basics\Errors::addError
+     */
     public function testErrorsaddError() {
         $Errors = new Basics\Errors();
 
@@ -51,12 +60,29 @@ class ErrorsTest extends TestCase {
         $this->assertArrayHasKey(Error\ErrorCodes::UNKNOWN()->getError_Code(), $Errors->getErrors());
     }
 
+    /**
+     * @covers Basics\Errors::addError
+     * @covers Basics\Errors::hasError
+     */
     public function testErrorshasError() {
         $Errors = new Basics\Errors();
 
         $Errors->addError(Error\ErrorCodes::UNKNOWN());
 
         $this->assertTrue($Errors->hasError(Error\ErrorCodes::UNKNOWN()));
+    }
+
+    /**
+     * @covers Basics\Errors::addError
+     * @covers Basics\Errors::hasError
+     */
+    public function testErrorshasErrorCi() {
+        $Errors = new Basics\Errors();
+
+        $this->assertTrue(
+                $Errors->addError(Error\ErrorCodes::UNKNOWN())
+                        ->hasError(Error\ErrorCodes::UNKNOWN())
+        );
     }
 
 }

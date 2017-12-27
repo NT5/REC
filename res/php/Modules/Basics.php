@@ -74,11 +74,12 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
     /**
      * 
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @return \REC\Modules\Basics\Errors
      */
     public function addError(Basics\Error\ErrorCodes $Error) {
         $Errors = $this->getErrorSet();
 
-        $Errors->addError($Error);
+        return $Errors->addError($Error);
     }
 
     /**
