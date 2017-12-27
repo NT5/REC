@@ -94,7 +94,7 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
 
     /**
      * 
-     * @return array
+     * @return \REC\Modules\Basics\Error\ErrorCodes[]
      */
     public function getErrors() {
         $Errors = $this->getErrorSet();

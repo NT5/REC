@@ -12,7 +12,7 @@ class Errors extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      *
-     * @var array 
+     * @var \REC\Modules\Basics\Error\ErrorCodes[] 
      */
     private $Errors;
 
@@ -35,7 +35,7 @@ class Errors extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      * 
-     * @return array
+     * @return \REC\Modules\Basics\Error\ErrorCodes[]
      */
     public function getErrors() {
         return $this->Errors;
@@ -52,7 +52,7 @@ class Errors extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      * 
-     * @return \REC\Modules\Basics\Error\ErrorSet
+     * @return \REC\Modules\Basics\Errors
      */
     public function getErrorSet() {
         return $this;
