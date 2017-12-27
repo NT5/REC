@@ -4,7 +4,6 @@ namespace REC\Modules;
 
 use REC\Modules\Factory;
 use REC\Modules\Basics;
-use REC\Modules\Basics\Error;
 use REC\Modules\Basics\Warning;
 
 /**
@@ -20,9 +19,9 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
 
     /**
      * Set con errores que puede generar la pagina
-     * @var \REC\Modules\Basics\Error\ErrorSet 
+     * @var \REC\Modules\Basics\Errors
      */
-    private $ErrorSet;
+    private $Errors;
 
     /**
      * Set con advertencias que puede generar la pagina
@@ -33,12 +32,12 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
     /**
      * 
      * @param \REC\Modules\Basics\Logger $Logger
-     * @param \REC\Modules\Basics\Error\ErrorSet $ErrorSet
+     * @param \REC\Modules\Basics\Errors $Errors
      * @param \REC\Modules\Basics\Warning\WarningSet $WarningSet
      */
-    public function __construct(Basics\Logger $Logger = NULL, Error\ErrorSet $ErrorSet = NULL, Warning\WarningSet $WarningSet = NULL) {
+    public function __construct(Basics\Logger $Logger = NULL, Basics\Errors $Errors = NULL, Warning\WarningSet $WarningSet = NULL) {
         $this->Logger = ($Logger) ? : new Basics\Logger();
-        $this->ErrorSet = ($ErrorSet) ? : new Error\ErrorSet();
+        $this->Errors = ($Errors) ? : new Basics\Errors();
         $this->WarningSet = ($WarningSet) ? : new Warning\WarningSet();
 
         $this->setLog("Nuevo objetos de modulos basicos creado.");
@@ -66,20 +65,20 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
 
     /**
      * 
-     * @return \REC\Modules\Basics\Error\ErrorSet
+     * @return \REC\Modules\Basics\Errors
      */
     public function getErrorSet() {
-        return $this->ErrorSet;
+        return $this->Errors;
     }
 
     /**
      * 
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
      */
-    public function addError(Error\ErrorCodes $Error) {
-        $ErrorSet = $this->getErrorSet();
+    public function addError(Basics\Error\ErrorCodes $Error) {
+        $Errors = $this->getErrorSet();
 
-        $ErrorSet->addError($Error);
+        $Errors->addError($Error);
     }
 
     /**
@@ -88,9 +87,9 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
      * @return boolean
      */
     public function hasError(Basics\Error\ErrorCodes $Error) {
-        $ErrorSet = $this->getErrorSet();
+        $Errors = $this->getErrorSet();
 
-        return $ErrorSet->hasError($Error);
+        return $Errors->hasError($Error);
     }
 
     /**
@@ -98,9 +97,9 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
      * @return array
      */
     public function getErrors() {
-        $ErrorSet = $this->getErrorSet();
+        $Errors = $this->getErrorSet();
 
-        return $ErrorSet->getErrors();
+        return $Errors->getErrors();
     }
 
     /**

@@ -1,15 +1,14 @@
 <?php
 
-namespace REC\Modules\Basics\Error;
+namespace REC\Modules\Basics;
 
-use REC\Modules\Basics;
 use REC\Modules\Basics\Error;
 use REC\Modules\Factory;
 
 /**
  * @todo Documentacion
  */
-class ErrorSet extends Factory\ModuleClass implements Error\ThrowableError {
+class Errors extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      *
@@ -30,8 +29,8 @@ class ErrorSet extends Factory\ModuleClass implements Error\ThrowableError {
      * 
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
      */
-    public function addError(Basics\Error\ErrorCodes $Error) {
-        $this->Errors[$Error->getError_Code()] = new Basics\Error($Error);
+    public function addError(Error\ErrorCodes $Error) {
+        $this->Errors[$Error->getError_Code()] = new Error\ErrorStructure($Error);
     }
 
     /**
@@ -47,7 +46,7 @@ class ErrorSet extends Factory\ModuleClass implements Error\ThrowableError {
      * @param \REC\Modules\Basics\Error\ErrorCodes $Error
      * @return boolean
      */
-    public function hasError(Basics\Error\ErrorCodes $Error) {
+    public function hasError(Error\ErrorCodes $Error) {
         return (array_key_exists($Error->getError_Code(), $this->getErrors()));
     }
 

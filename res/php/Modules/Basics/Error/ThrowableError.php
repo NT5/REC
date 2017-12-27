@@ -11,7 +11,7 @@ interface ThrowableError {
 
     /**
      * 
-     * @return \REC\Modules\Basics\Error\ErrorSet
+     * @return \REC\Modules\Basics\Errors
      */
     public function getErrorSet();
 
@@ -29,7 +29,7 @@ interface ThrowableError {
 
     /**
      * 
-     * @return array
+     * @return \REC\Modules\Basics\Errors[]
      */
     public function getErrors();
 }
