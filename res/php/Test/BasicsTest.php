@@ -23,13 +23,13 @@ class BasicsTest extends TestCase {
 
     public function testBasicCreationManual() {
         $Logger = new Basics\Logger();
-        $ErrorSet = new Error\ErrorSet();
+        $Errors = new Basics\Errors();
         $WarningSet = new Warning\WarningSet();
 
-        $Basics = new Modules\Basics($Logger, $ErrorSet, $WarningSet);
+        $Basics = new Modules\Basics($Logger, $Errors, $WarningSet);
 
         $this->assertInstanceOf(Warning\WarningSet::class, $Basics->getWarningSet());
-        $this->assertInstanceOf(Error\ErrorSet::class, $Basics->getErrorSet());
+        $this->assertInstanceOf(Basics\Errors::class, $Basics->getErrorSet());
         $this->assertInstanceOf(Basics\Logger::class, $Basics->getLogger());
     }
 

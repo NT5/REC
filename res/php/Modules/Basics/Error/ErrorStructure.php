@@ -1,6 +1,6 @@
 <?php
 
-namespace REC\Modules\Basics;
+namespace REC\Modules\Basics\Error;
 
 use REC\Modules\Basics\Error;
 
@@ -8,7 +8,7 @@ use REC\Modules\Basics\Error;
  * @todo Documentacion
  * Clase <b>Error</b> con métodos usados en el manejo de errores
  */
-class Error {
+class ErrorStructure {
 
     /**
      *
