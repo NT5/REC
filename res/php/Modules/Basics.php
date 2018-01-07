@@ -3,12 +3,14 @@
 namespace REC\Modules;
 
 use REC\Modules\Basics;
+use REC\Modules\Basics\Logger;
 use REC\Modules\Basics\Warning;
+use REC\Modules\Basics\Error;
 
 /**
  * @todo Documentacion
  */
-class Basics implements Basics\Logger\Loggeable, Basics\Error\ThrowableError, Basics\Warning\ThrowableWarning {
+class Basics implements Logger\Loggeable, Error\ThrowableError, Warning\ThrowableWarning {
 
     /**
      * Objeto con métodos usados en el registro de seguimiento
@@ -136,6 +138,18 @@ class Basics implements Basics\Logger\Loggeable, Basics\Error\ThrowableError, Ba
         $WarningSet = $this->getWarningSet();
 
         return $WarningSet->getWarnings();
+    }
+
+    public function getLog($class, $index = NULL) {
+        
+    }
+
+    public function getError($index) {
+        
+    }
+
+    public function getWarning($index) {
+        
     }
 
 }

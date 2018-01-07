@@ -23,6 +23,13 @@ interface ThrowableError {
 
     /**
      * 
+     * @param int $index
+     * @return int|FALSE
+     */
+    public function getError($index);
+
+    /**
+     * 
      * @param int $Error
      * @return bool
      */

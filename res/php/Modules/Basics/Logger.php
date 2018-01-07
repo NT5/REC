@@ -68,7 +68,7 @@ class Logger implements Logger\Loggeable {
      * o <b>FALSE</b> si el area no existe en los registros
      */
     public function getLog($class, $index = NULL) {
-        return (array_key_exists($class, $this->getLogs()) ? ($index === NULL ? $this->Logs[$class] : $this->Logs[$class][$index] ) : FALSE);
+        return (array_key_exists($class, $this->getLogs()) ? ($index === NULL ? $this->getLogs()[$class] : $this->getLogs()[$class][$index] ) : FALSE);
     }
 
     /**

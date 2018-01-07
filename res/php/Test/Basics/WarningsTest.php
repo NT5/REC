@@ -20,7 +20,7 @@ class WarningsTest extends TestCase {
                 ->addWarning(Warning\WarningCodes::UNKNOWN);
 
         $this->assertCount(2, $this->Warnings->getWarnings());
-        $this->assertEquals(Warning\WarningCodes::UNKNOWN, $this->Warnings->getWarnings()[0]);
+        $this->assertEquals(Warning\WarningCodes::UNKNOWN, $this->Warnings->getWarning(0));
     }
 
     public function testWarningsaddWarningExeption() {

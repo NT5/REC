@@ -23,6 +23,13 @@ interface ThrowableWarning {
 
     /**
      * 
+     * @param int $index
+     * @return int|FALSE
+     */
+    public function getWarning($index);
+
+    /**
+     * 
      * @param int $Warning
      * @return bool
      */

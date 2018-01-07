@@ -20,7 +20,7 @@ class ErrorsTest extends TestCase {
                 ->addError(Error\ErrorCodes::UNKNOWN);
 
         $this->assertCount(2, $this->Errors->getErrors());
-        $this->assertEquals(Error\ErrorCodes::UNKNOWN, $this->Errors->getErrors()[0]);
+        $this->assertEquals(Error\ErrorCodes::UNKNOWN, $this->Errors->getError(0));
     }
 
     public function testErrorsaddErrorExeption() {
