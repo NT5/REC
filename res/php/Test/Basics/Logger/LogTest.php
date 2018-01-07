@@ -7,10 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 class LogTest extends TestCase {
 
-    public function testLogCreation() {
-        $Log = new Logger\Log(self::class, 'foo', 'foo', 0, 0, 0, 'foo');
+    private $Log;
 
-        $this->assertInstanceOf(Logger\Log::class, $Log);
+    protected function setUp() {
+        $this->Log = new Logger\Log(self::class, 'foo', 'foo', 0, 0, 0, 'foo');
     }
 
     public function testLogGetters() {

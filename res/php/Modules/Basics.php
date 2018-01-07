@@ -2,14 +2,13 @@
 
 namespace REC\Modules;
 
-use REC\Modules\Factory;
 use REC\Modules\Basics;
 use REC\Modules\Basics\Warning;
 
 /**
  * @todo Documentacion
  */
-class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Basics\Error\ThrowableError, Basics\Warning\ThrowableWarning {
+class Basics implements Basics\Logger\Loggeable, Basics\Error\ThrowableError, Basics\Warning\ThrowableWarning {
 
     /**
      * Objeto con métodos usados en el registro de seguimiento
@@ -41,8 +40,6 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
         $this->WarningSet = ($WarningSet) ? : new Warning\WarningSet();
 
         $this->setLog("Nuevo objetos de modulos basicos creado.");
-
-        parent::__construct("Hendell", "Modulos de bajo nivel para el funcionamiento de la pagina", "Basics", 0.1);
     }
 
     /**
@@ -73,10 +70,11 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
 
     /**
      * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @param int $Error
      * @return \REC\Modules\Basics\Errors
+     * @throws \Exception
      */
-    public function addError(Basics\Error\ErrorCodes $Error) {
+    public function addError($Error) {
         $Errors = $this->getErrorSet();
 
         return $Errors->addError($Error);
@@ -84,10 +82,10 @@ class Basics extends Factory\ModuleClass implements Basics\Logger\Loggeable, Bas
 
     /**
      * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
-     * @return boolean
+     * @param int $Error
+     * @return bool
      */
-    public function hasError(Basics\Error\ErrorCodes $Error) {
+    public function hasError($Error) {
         $Errors = $this->getErrorSet();
 
         return $Errors->hasError($Error);

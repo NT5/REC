@@ -2,8 +2,6 @@
 
 namespace REC\Modules\Basics\Warning;
 
-use REC\Modules\Basics\Warning;
-
 /**
  * @todo Documentacion
  */
@@ -11,21 +9,24 @@ interface ThrowableWarning {
 
     /**
      * 
-     * @return \REC\Modules\Basics\Warning\WarningSet
+     * @return \REC\Modules\Basics\Warnings
      */
     public function getWarningSet();
 
     /**
      * 
-     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
+     * @param int $Warning
+     * @return \REC\Modules\Basics\Warnings
+     * @throws \Exception
      */
-    public function addWarning(Warning\WarningCodes $Warning);
+    public function addWarning($Warning);
 
     /**
      * 
-     * @param \REC\Modules\Basics\Warning\WarningCodes $Warning
+     * @param int $Warning
+     * @return bool
      */
-    public function hasWarning(Warning\WarningCodes $Warning);
+    public function hasWarning($Warning);
 
     /**
      * 

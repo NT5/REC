@@ -2,8 +2,6 @@
 
 namespace REC\Modules\Basics\Error;
 
-use REC\Modules\Basics\Error;
-
 /**
  * @todo Documentacion
  */
@@ -17,20 +15,22 @@ interface ThrowableError {
 
     /**
      * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @param int $Error
      * @return \REC\Modules\Basics\Errors
+     * @throws \Exception
      */
-    public function addError(Error\ErrorCodes $Error);
+    public function addError($Error);
 
     /**
      * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @param int $Error
+     * @return bool
      */
-    public function hasError(Error\ErrorCodes $Error);
+    public function hasError($Error);
 
     /**
      * 
-     * @return \REC\Modules\Basics\Errors[]
+     * @return array
      */
     public function getErrors();
 }

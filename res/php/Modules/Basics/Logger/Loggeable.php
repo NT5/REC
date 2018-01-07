@@ -18,4 +18,11 @@ interface Loggeable {
      * @param string $format
      */
     public function setLog($string, ...$format);
+
+    /**
+     * 
+     * @param string $class
+     * @param int $index
+     */
+    public function getLog($class, $index = NULL);
 }

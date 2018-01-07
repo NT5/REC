@@ -3,41 +3,35 @@
 namespace REC\Modules\Basics;
 
 use REC\Modules\Basics\Error;
-use REC\Modules\Factory;
 
 /**
  * @todo Documentacion
  */
-class Errors extends Factory\ModuleClass implements Error\ThrowableError {
+class Errors implements Error\ThrowableError {
 
     /**
      *
-     * @var \REC\Modules\Basics\Error\ErrorCodes[] 
+     * @var array
      */
-    private $Errors;
+    private $Errors = [];
 
     /**
      * 
-     * @param self $Errors
-     */
-    public function __construct() {
-        $this->Errors = [];
-        parent::__construct("Hendell", "Carga y manejo de los posibles errores de la Pagina", "ErrorSet", 0.1);
-    }
-
-    /**
-     * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
+     * @param int $Error
      * @return \REC\Modules\Basics\Errors
+     * @throws \Exception
      */
-    public function addError(Error\ErrorCodes $Error) {
-        $this->Errors[$Error->getError_Code()] = new Error\ErrorStructure($Error);
-        return $this;
+    public function addError($Error) {
+        if (is_int($Error)) {
+            $this->Errors[] = $Error;
+            return $this;
+        }
+        throw new \Exception("No valid value");
     }
 
     /**
      * 
-     * @return \REC\Modules\Basics\Error\ErrorCodes[]
+     * @return array
      */
     public function getErrors() {
         return $this->Errors;
@@ -45,11 +39,11 @@ class Errors extends Factory\ModuleClass implements Error\ThrowableError {
 
     /**
      * 
-     * @param \REC\Modules\Basics\Error\ErrorCodes $Error
-     * @return boolean
+     * @param int $Error
+     * @return bool
      */
-    public function hasError(Error\ErrorCodes $Error) {
-        return (array_key_exists($Error->getError_Code(), $this->getErrors()));
+    public function hasError($Error) {
+        return (in_array($Error, $this->getErrors(), TRUE));
     }
 
     /**

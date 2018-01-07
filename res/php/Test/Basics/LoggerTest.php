@@ -7,32 +7,43 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerTest extends TestCase {
 
-    public function testLoggerCreation() {
-        $Logger = new Basics\Logger();
+    private $Logger;
 
-        $this->assertInstanceOf(Basics\Logger::class, $Logger);
+    protected function setUp() {
+        $this->Logger = new Basics\Logger();
+        $this->Logger->setTraceSteps(2);
     }
 
     public function testLoggerAdition() {
-        $Logger = new Basics\Logger();
         $Logs_Count = 10;
 
         for ($i = 0; $i < $Logs_Count; $i++) {
-            $Logger->setLog("Test Log: $i");
+            $this->Logger->setLog("Test Log: $i");
         }
-        $this->assertEquals(($Logs_Count + 1), $Logger->getLogCount());
+
+        $this->assertEquals($Logs_Count, $this->Logger->getLogCount());
     }
 
     public function testFormattedLogger() {
-        $Logger = new Basics\Logger();
-        $Logger->setTraceSteps(2);
+        $Logger = $this->Logger;
 
-        $Logger->setLog("%s", "foo");
-        $Logger->setLog("%s %s", "foo", "bar");
+        $Logger
+                ->setLog("%s", "foo")
+                ->setLog("%s %s", "foo", "bar");
 
-        $this->assertEquals(3, $Logger->getLogCount());
-        $this->assertEquals("foo", $Logger->getLog(self::class)[1]->getText());
-        $this->assertEquals("foo bar", $Logger->getLog(self::class)[2]->getText());
+        $this->assertEquals(2, $Logger->getLogCount());
+        $this->assertEquals("foo", $Logger->getLog(self::class, 0)->getText());
+        $this->assertEquals("foo bar", $Logger->getLog(self::class, 1)->getText());
+    }
+
+    public function testLoggerLog() {
+        $this->Logger->setLog('foo');
+
+        $Log = $this->Logger->getLog(self::class, 0);
+
+        $this->assertEquals(self::class, $Log->getClass());
+        $this->assertEquals(__FUNCTION__, $Log->getFunction());
+        $this->assertEquals('foo', $Log->getText());
     }
 
 }
