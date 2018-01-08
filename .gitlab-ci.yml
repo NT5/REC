@@ -45,7 +45,7 @@ docs:metrics:
     url: http://test.uml.nt5.info/docs/metrics
   script:
   - wget -q https://github.com/phpmetrics/PhpMetrics/releases/download/v2.3.2/phpmetrics.phar
-  - php phpmetrics.phar --junit --report-html=./docs/metrics ./
+  - php phpmetrics.phar --report-html=./docs/metrics ./
 
 deploy:app:
   stage: deploy
