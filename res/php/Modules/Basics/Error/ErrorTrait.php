@@ -13,13 +13,4 @@ trait ErrorTrait {
     use ErrorAdition,
         ErrorGetter,
         ErrorChecks;
-
-    /**
-     * 
-     * @return \REC\Modules\Basics\Errors
-     */
-    public function getErrorSet() {
-        return $this;
-    }
-
 }

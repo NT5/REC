@@ -9,9 +9,16 @@ interface Loggeable {
 
     /**
      * 
-     * @return \REC\Modules\Logger
+     * @param int $steps
+     * @return Logger
      */
-    public function getLogger();
+    public function setLoggerTraceSteps($steps);
+
+    /**
+     * 
+     * @return int
+     */
+    public function getLoggerTraceStepts();
 
     /**
      * @param string $string
@@ -25,4 +32,16 @@ interface Loggeable {
      * @param int $index
      */
     public function getLog($class, $index = NULL);
+
+    /**
+     * 
+     * @return \REC\Modules\Basics\Logger\Log[] Lista de registros
+     */
+    public function getLogs();
+
+    /**
+     * 
+     * @return int
+     */
+    public function getLogCount();
 }

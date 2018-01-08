@@ -9,12 +9,6 @@ interface ThrowableWarning {
 
     /**
      * 
-     * @return \REC\Modules\Basics\Warnings
-     */
-    public function getWarningSet();
-
-    /**
-     * 
      * @param int $Warning
      * @return \REC\Modules\Basics\Warnings
      * @throws \Exception

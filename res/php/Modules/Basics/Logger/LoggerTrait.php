@@ -17,15 +17,15 @@ trait LoggerTrait {
      *
      * @var int 
      */
-    private $TraceSteps = 3;
+    private $LoggerTraceSteps = 3;
 
     /**
      * 
      * @param int $steps
      * @return Logger
      */
-    public function setTraceSteps($steps) {
-        $this->TraceSteps = $steps;
+    public function setLoggerTraceSteps($steps) {
+        $this->LoggerTraceSteps = $steps;
         return $this;
     }
 
@@ -33,16 +33,8 @@ trait LoggerTrait {
      * 
      * @return int
      */
-    public function getTraceStepts() {
-        return $this->TraceSteps;
-    }
-
-    /**
-     * 
-     * @return Logger
-     */
-    public function getLogger() {
-        return $this;
+    public function getLoggerTraceStepts() {
+        return $this->LoggerTraceSteps;
     }
 
 }

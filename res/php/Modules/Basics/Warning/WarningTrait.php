@@ -13,13 +13,4 @@ trait WarningTrait {
     use WarningAdition,
         WarningGetter,
         WarningChecks;
-
-    /**
-     * 
-     * @return \REC\Modules\Basics\Warnings
-     */
-    public function getWarningSet() {
-        return $this;
-    }
-
 }

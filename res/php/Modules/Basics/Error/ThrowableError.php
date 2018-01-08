@@ -9,12 +9,6 @@ interface ThrowableError {
 
     /**
      * 
-     * @return \REC\Modules\Basics\Errors
-     */
-    public function getErrorSet();
-
-    /**
-     * 
      * @param int $Error
      * @return \REC\Modules\Basics\Errors
      * @throws \Exception

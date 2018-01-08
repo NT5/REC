@@ -21,7 +21,7 @@ trait LoggerAdition {
      * @return Logger
      */
     public function setLog($string, ...$format) {
-        $trace_arr = debug_backtrace(FALSE, $this->TraceSteps);
+        $trace_arr = debug_backtrace(FALSE, $this->getLoggerTraceStepts());
         $trace = end($trace_arr);
 
         $class_name = $this->check_array('class', $trace, "Unknown");

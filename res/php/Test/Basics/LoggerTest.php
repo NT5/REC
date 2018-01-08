@@ -11,7 +11,7 @@ class LoggerTest extends TestCase {
 
     protected function setUp() {
         $this->Logger = new Basics\Logger();
-        $this->Logger->setTraceSteps(2);
+        $this->Logger->setLoggerTraceSteps(2);
     }
 
     public function testLoggerAdition() {
