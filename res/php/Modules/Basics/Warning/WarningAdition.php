@@ -5,6 +5,12 @@ namespace REC\Modules\Basics\Warning;
 trait WarningAdition {
 
     /**
+     *
+     * @var array
+     */
+    protected $Warnings = [];
+
+    /**
      * 
      * @param int $Warning
      * @return \REC\Modules\Basics\Warnings

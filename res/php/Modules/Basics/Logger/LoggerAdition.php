@@ -5,6 +5,18 @@ namespace REC\Modules\Basics\Logger;
 trait LoggerAdition {
 
     /**
+     * Alamacena todos los registros
+     * @var \REC\Modules\Basics\Logger\Log[] 
+     */
+    protected $Logs = [];
+
+    /**
+     * 
+     * @return int
+     */
+    abstract function getLoggerTraceStepts();
+
+    /**
      * 
      * @param string $key
      * @param array $array

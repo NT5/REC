@@ -5,6 +5,12 @@ namespace REC\Modules\Basics\Logger;
 trait LoggerGetter {
 
     /**
+     * Alamacena todos los registros
+     * @var \REC\Modules\Basics\Logger\Log[] 
+     */
+    protected $Logs = [];
+
+    /**
      * Regresa un arreglo con todos los registros que posee la instancia
      * @return \REC\Modules\Basics\Logger\Log[] Lista de registros
      */

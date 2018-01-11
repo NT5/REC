@@ -6,6 +6,12 @@ trait WarningChecks {
 
     /**
      * 
+     * @return array
+     */
+    abstract function getWarnings();
+
+    /**
+     * 
      * @param int $Warning
      * @return bool
      */

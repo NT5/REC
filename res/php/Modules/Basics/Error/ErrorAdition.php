@@ -5,6 +5,12 @@ namespace REC\Modules\Basics\Error;
 trait ErrorAdition {
 
     /**
+     *
+     * @var array
+     */
+    protected $Errors = [];
+
+    /**
      * 
      * @param int $Error
      * @return \REC\Modules\Basics\Errors

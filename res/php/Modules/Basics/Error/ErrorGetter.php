@@ -5,6 +5,12 @@ namespace REC\Modules\Basics\Error;
 trait ErrorGetter {
 
     /**
+     *
+     * @var array
+     */
+    protected $Errors = [];
+
+    /**
      * 
      * @param int $index
      * @return int|FALSE

@@ -6,6 +6,12 @@ trait ErrorChecks {
 
     /**
      * 
+     * @return array
+     */
+    abstract function getErrors();
+
+    /**
+     * 
      * @param int $Error
      * @return bool
      */

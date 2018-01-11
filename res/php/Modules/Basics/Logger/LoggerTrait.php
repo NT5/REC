@@ -11,7 +11,7 @@ trait LoggerTrait {
      * Alamacena todos los registros
      * @var \REC\Modules\Basics\Logger\Log[] 
      */
-    private $Logs = [];
+    protected $Logs = [];
 
     /**
      *

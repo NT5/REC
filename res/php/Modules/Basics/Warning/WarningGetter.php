@@ -5,6 +5,12 @@ namespace REC\Modules\Basics\Warning;
 trait WarningGetter {
 
     /**
+     *
+     * @var array
+     */
+    protected $Warnings = [];
+
+    /**
      * 
      * @param int $index
      * @return int|FALSE
