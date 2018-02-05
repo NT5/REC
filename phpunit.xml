@@ -9,6 +9,11 @@
             <file>res/php/Test/BasicsTest.php</file>
         </testsuite>
     </testsuites>
+    <testsuites>
+        <testsuite name="Util">
+            <directory>res/php/Test/Util</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">res/php/Test</directory>
