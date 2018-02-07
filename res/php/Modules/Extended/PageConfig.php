@@ -104,33 +104,41 @@ class PageConfig {
     /**
      * 
      * @param string $title
+     * @return string
      */
     public function setPageTitle($title) {
         $this->page_title = $title;
+        return $title;
     }
 
     /**
      * 
      * @param boolean $first_run
+     * @return boolean
      */
     public function setFirstRun($first_run) {
         $this->first_run = $first_run;
+        return $first_run;
     }
 
     /**
      * 
      * @param string $page_domain
+     * @return string
      */
     public function setPageDomain($page_domain) {
         $this->page_domain = $page_domain;
+        return $page_domain;
     }
 
     /**
      * 
      * @param boolean $enable_debug
+     * @return boolean
      */
     public function setEnableDebug($enable_debug) {
         $this->enable_debug = $enable_debug;
+        return $enable_debug;
     }
 
 }

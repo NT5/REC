@@ -5,6 +5,7 @@ namespace REC\Modules\Extended\PageConfig;
 use REC\Modules;
 use REC\Modules\Util;
 use REC\Modules\Basics\Warning;
+use REC\Modules\Extended\PageConfig;
 
 trait fromIniFile {
 
@@ -15,6 +16,7 @@ trait fromIniFile {
      * @return PageConfig Regresa instancia de configuracion creada
      */
     public static function fromIniFile(Modules\Basics $Basics = NULL, $inifile = 'config.ini') {
+        $Basics = ($Basics) ? : new Modules\Basics();
         $ini = Util\Files::load_ini_file($inifile);
 
         if ($ini) {
