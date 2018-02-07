@@ -2,15 +2,17 @@
 
 namespace REC\Modules\Extended;
 
-use REC\Modules\Basics\Warning;
-use REC\Modules\Util;
 use REC\Modules;
+use REC\Modules\Extended\PageConfig;
 
 /**
  * @todo Documentar
  * Clase que contiene metodos y variables de configuracion de la pagina
  */
 class PageConfig {
+
+    use PageConfig\saveToIni,
+        PageConfig\fromIniFile;
 
     /**
      *
@@ -129,82 +131,6 @@ class PageConfig {
      */
     public function setEnableDebug($enable_debug) {
         $this->enable_debug = $enable_debug;
-    }
-
-    /**
-     * Guarda la configuracion en un archivo .ini
-     * @param string $ini Ruta del archivo .ini en el servidor
-     * @return boolean
-     */
-    public function saveToIni($ini = 'config.ini') {
-
-        $this->Basics()->setLog("Intentando guardar configuración en el archivo $ini...");
-
-        $data = [
-            "title" => $this->getPageTitle(),
-            "first_run" => ($this->getFirstRun() ? "true" : "false"),
-            "page_domain" => $this->getPageDomain(),
-            "enable_debug" => ($this->getEnableDebug() ? "true" : "false")
-        ];
-        $ini_area = "REC";
-
-        foreach ($data as $index => $value) {
-            if (Util\Files::set_ini_file($ini, $ini_area, $index, $value)) {
-                $this->Basics()->setLog("La variable %s fue guardada correctamente con el valor: %s", $index, $value);
-                continue;
-            } else {
-                $this->Basics()->setLog("No se pudo guardar el archivo de configuración; operacion abortada");
-                $this->Basics()->addWarning(Warning\WarningCodes::CANT_SAVE_PAGE_CONFIG_FILE);
-                return FALSE;
-            }
-        }
-        $this->Basics()->setLog("El archivo $ini fue guardado correctamente");
-        return TRUE;
-    }
-
-    /**
-     * Regresa instancia de configuración de la pagina web cargada desde un archivo .ini valido
-     * @param Modules\Basics $Basics
-     * @param string $inifile Ruta del archivo .ini en el servidor
-     * @return PageConfig Regresa instancia de configuracion creada
-     */
-    public static function fromIniFile(Modules\Basics $Basics = NULL, $inifile = 'config.ini') {
-        $ini = Util\Files::load_ini_file($inifile);
-
-        if ($ini) {
-            $Basics->setLog("Comprobando estructura de $inifile...");
-
-            $valid_structure = [
-                "title",
-                "first_run",
-                "page_domain",
-                "enable_debug"
-            ];
-            $ini_area = "REC";
-
-            if (Util\Functions::checkArray([$ini_area], $ini) && Util\Functions::checkArray($valid_structure, $ini[$ini_area])) {
-                $instance = new self(
-                        $Basics, $ini[$ini_area]["title"], $ini[$ini_area]["first_run"], $ini[$ini_area]["page_domain"], $ini[$ini_area]["enable_debug"]
-                );
-                $Basics->setLog("Instancia de configuración creada correctamente con $inifile");
-
-                return $instance;
-            } else {
-                $Basics->setLog("El archivo $inifile tiene una estructura invalida");
-
-                $Basics->addWarning(Warning\WarningCodes::PAGE_CONFIGURATION_INVALID_FORMAT);
-                $Basics->addWarning(Warning\WarningCodes::DEFAULT_PAGE_CONFIGURATION);
-
-                return new self();
-            }
-        } else {
-            $Basics->setLog("El archivo $inifile no pudo ser cargado");
-
-            $Basics->addWarning(Warning\WarningCodes::CANT_LOAD_PAGE_CONFIGURATION_FILE);
-            $Basics->addWarning(Warning\WarningCodes::DEFAULT_PAGE_CONFIGURATION);
-
-            return new self();
-        }
     }
 
 }
