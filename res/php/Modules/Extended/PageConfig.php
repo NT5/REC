@@ -9,7 +9,7 @@ use REC\Modules\Extended\PageConfig;
  * @todo Documentar
  * Clase que contiene metodos y variables de configuracion de la pagina
  */
-class PageConfig {
+class PageConfig implements PageConfig\PageConfigInterface {
 
     use PageConfig\saveToIni,
         PageConfig\fromIniFile;
