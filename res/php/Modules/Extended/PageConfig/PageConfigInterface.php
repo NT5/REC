@@ -2,6 +2,9 @@
 
 namespace REC\Modules\Extended\PageConfig;
 
+use REC\Modules;
+use REC\Modules\Extended;
+
 interface PageConfigInterface {
 
     /**
@@ -73,7 +76,7 @@ interface PageConfigInterface {
      * Regresa instancia de configuración de la pagina web cargada desde un archivo .ini valido
      * @param Modules\Basics $Basics
      * @param string $inifile Ruta del archivo .ini en el servidor
-     * @return PageConfig Regresa instancia de configuracion creada
+     * @return Extended\PageConfig Regresa instancia de configuracion creada
      */
     public static function fromIniFile(Modules\Basics $Basics = NULL, $inifile = 'config.ini');
 }

@@ -32,4 +32,14 @@ abstract class WarningCodes {
      */
     const DEFAULT_PAGE_CONFIGURATION = 4;
 
+    /**
+     * 
+     */
+    const DATABASE_CONFIGURATION_INVALID_FORMAT = 5;
+
+    /**
+     * 
+     */
+    const CANT_LOAD_DATABASE_CONFIGURATION_FILE = 6;
+
 }
