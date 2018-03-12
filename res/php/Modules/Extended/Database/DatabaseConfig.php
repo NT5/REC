@@ -103,33 +103,41 @@ class DatabaseConfig implements DatabaseConfig\DatabaseConfigInterface {
     /**
      * 
      * @param string $server
+     * @return string
      */
     public function setServer($server = 'localhost') {
         $this->server = $server;
+        return $server;
     }
 
     /**
      * 
      * @param string $username
+     * @return string
      */
     public function setUserName($username = 'default') {
         $this->username = $username;
+        return $username;
     }
 
     /**
      * 
      * @param string $password
+     * @return string
      */
     public function setPassword($password = 'default') {
         $this->password = $password;
+        return $password;
     }
 
     /**
      * 
      * @param string $database
+     * @return string
      */
     public function setDatabase($database = 'uml_rec') {
         $this->database = $database;
+        return $database;
     }
 
 }
