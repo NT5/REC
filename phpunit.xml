@@ -10,6 +10,11 @@
         </testsuite>
     </testsuites>
     <testsuites>
+        <testsuite name="Extended">
+            <directory>res/php/Test/Extended</directory>
+        </testsuite>
+    </testsuites>
+    <testsuites>
         <testsuite name="Util">
             <directory>res/php/Test/Util</directory>
         </testsuite>
