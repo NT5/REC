@@ -64,7 +64,7 @@ class Connection {
         $this->Basics()->setLog("Intentando crear instancia de MySQLi...");
         $Config = $this->getConfig();
 
-        $MySQLi = new \mysqli(
+        $MySQLi = @new \mysqli(
                 $Config->getServer(), $Config->getUserName(), $Config->getPassword(), $Config->getDatabase()
         );
 

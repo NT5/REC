@@ -1,4 +1,5 @@
 /composer.lock
+/docs
 /compilation_cache/
 /bower_components/
 /vendor/
