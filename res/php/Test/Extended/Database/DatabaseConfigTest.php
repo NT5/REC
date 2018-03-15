@@ -2,6 +2,7 @@
 
 namespace REC\Test\Extended\Database;
 
+use REC\Modules\Basics\Warning;
 use REC\Modules\Extended\Database\DatabaseConfig;
 use PHPUnit\Framework\TestCase;
 
@@ -41,10 +42,17 @@ class DatabaseConfigTest extends TestCase {
         $this->assertFileExists($iniFile);
         $dbc = DatabaseConfig::fromIniFile(NULL, $iniFile);
 
-        $this->assertEquals("localhost", $dbc->getServer());
-        $this->assertEquals("default", $dbc->getUserName());
-        $this->assertEquals("default", $dbc->getPassword());
+        $this->assertEquals("nt5.info", $dbc->getServer());
+        $this->assertEquals("uml", $dbc->getUserName());
+        $this->assertEquals("uml123", $dbc->getPassword());
         $this->assertEquals("uml_rec", $dbc->getDatabase());
+    }
+
+    public function testDatabaseConfigWarnings() {
+        $w = $this->dbc->Basics();
+
+        $this->assertFalse($w->hasWarning(Warning\WarningCodes::DATABASE_CONFIGURATION_INVALID_FORMAT));
+        $this->assertFalse($w->hasWarning(Warning\WarningCodes::CANT_LOAD_DATABASE_CONFIGURATION_FILE));
     }
 
 }

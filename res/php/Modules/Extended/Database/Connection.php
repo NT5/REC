@@ -1,16 +1,26 @@
 <?php
 
-namespace REC1\Components\Database;
+namespace REC\Modules\Extended\Database;
+
+use REC\Modules;
+use REC\Modules\Basics\Error;
+use REC\Modules\Extended\Database;
 
 /**
  * @todo Documentar
  * Clase controladora de la conexión MySQLi
  */
-class Connection extends \REC1\Components\BaseComponents {
+class Connection {
+
+    /**
+     *
+     * @var Modules\Basics 
+     */
+    private $Basics;
 
     /**
      * Instancia de configuración 
-     * @var \REC1\Components\Database\Config
+     * @var Database\DatabaseConfig
      */
     private $Config;
 
@@ -22,37 +32,51 @@ class Connection extends \REC1\Components\BaseComponents {
 
     /**
      * Regresa instancia de conexión MySQLi además de la instancia de configuración
-     * @param \REC1\Components\Database\Config $Config
-     * @param \REC1\Components\BaseComponents $BaseComponents
+     * @param Database\DatabaseConfig $Config     
+     * @param boolean $Connect
+     * @param Modules\Basics $Basics
      */
-    public function __construct(\REC1\Components\Database\Config $Config = NULL, \REC1\Components\BaseComponents $BaseComponents = NULL) {
-        if (!$BaseComponents) {
-            $BaseComponents = new \REC1\Components\BaseComponents();
+    public function __construct(Database\DatabaseConfig $Config = NULL, $Connect = TRUE, Modules\Basics $Basics = NULL) {
+        $this->Basics = ($Basics) ? : new Modules\Basics();
+
+        $this->Config = ($Config) ? : new Database\DatabaseConfig(NULL, NULL, NULL, NULL, $this->Basics());
+
+        $this->Basics()->setLog("Nueva instancia de conexión de base de datos creada");
+
+        if ($Connect) {
+            $this->connect();
         }
-        parent::__construct($BaseComponents->getLogger(), $BaseComponents->getErrorSet(), $BaseComponents->getWarningSet());
+    }
 
-        $this->Config = ($Config) ? : new \REC1\Components\Database\Config(NULL, NULL, NULL, NULL, $this);
-
-        $this->setLog(\REC1\Components\Logger\Areas::DATABASE_CONNECTION, "Nueva instancia de conexión de base de datos creada");
-
-        $this->connect();
+    /**
+     * 
+     * @return Modules\Basics
+     */
+    public function Basics() {
+        return $this->Basics;
     }
 
     /**
      * Función que intenta crear instancia MySQLi con la configuración asignada
+     * @return Database\Connection
      */
     public function connect() {
-        $this->setLog(\REC1\Components\Logger\Areas::DATABASE_CONNECTION, "Intentando crear instancia de MySQLi...");
-        $this->MySQLi = @new \mysqli(
-                $this->getConfig()->getServer(), $this->getConfig()->getUserName(), $this->getConfig()->getPassword(), $this->getConfig()->getDatabase()
+        $this->Basics()->setLog("Intentando crear instancia de MySQLi...");
+        $Config = $this->getConfig();
+
+        $MySQLi = new \mysqli(
+                $Config->getServer(), $Config->getUserName(), $Config->getPassword(), $Config->getDatabase()
         );
-        if ($this->MySQLi->connect_errno) {
-            $this->addError(new \REC1\Components\Error(\REC1\Components\Error\Errors::CANT_CONNECT_MYSQLI_LINK));
-            $this->setLog(\REC1\Components\Logger\Areas::DATABASE_CONNECTION_ERROR, "No se pudo crear instancia MySQLi Error: %s (%s)", $this->MySQLi->connect_errno, $this->MySQLi->connect_error);
+
+        if ($MySQLi->connect_errno) {
+            $this->Basics()->addError(Error\ErrorCodes::CANT_CONNECT_MYSQLI_LINK);
+            $this->Basics()->setLog("No se pudo crear instancia MySQLi Error: %s (%s)", $MySQLi->connect_errno, $MySQLi->connect_error);
             $this->MySQLi = NULL;
         } else {
-            $this->setLog(\REC1\Components\Logger\Areas::DATABASE_CONNECTION, "Conexion MySQLi creada correctamente");
+            $this->Basics()->setLog("Conexion MySQLi creada correctamente");
+            $this->MySQLi = $MySQLi;
         }
+        return $this;
     }
 
     /**
@@ -65,7 +89,7 @@ class Connection extends \REC1\Components\BaseComponents {
 
     /**
      * Regresa instancia de configuración usada en la conexion de la base de datos
-     * @return \REC1\Components\Database\Config
+     * @return Database\DatabaseConfig
      */
     public function getConfig() {
         return $this->Config;

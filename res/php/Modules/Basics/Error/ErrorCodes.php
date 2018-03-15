@@ -13,4 +13,9 @@ abstract class ErrorCodes {
      */
     const UNKNOWN = 0;
 
+    /**
+     * 
+     */
+    const CANT_CONNECT_MYSQLI_LINK = 1;
+
 }
