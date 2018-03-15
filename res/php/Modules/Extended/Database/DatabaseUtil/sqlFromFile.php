@@ -1,11 +1,10 @@
 <?php
 
-namespace REC1\Components\Database;
+namespace REC\Modules\Extended\Database\DatabaseUtil;
 
-/**
- * Clase <b>Util</b> que contiene métodos utilizados en las consultas con la base de datos
- */
-class Util {
+use REC\Modules\Util;
+
+trait sqlFromFile {
 
     /**
      * Función que carga un archivo de syntax SQL
@@ -21,7 +20,7 @@ class Util {
             $commands = '';
             foreach ($sql_lines as $sql_line) {
                 $line = trim($sql_line);
-                if ($line && !\REC1\Util\Functions::startsWith($sql_line, '--')) {
+                if ($line && !Util\Functions::startsWith($sql_line, '--')) {
                     $commands .= $sql_line . "\n";
                 }
             }

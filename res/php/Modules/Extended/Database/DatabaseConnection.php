@@ -10,7 +10,7 @@ use REC\Modules\Extended\Database;
  * @todo Documentar
  * Clase controladora de la conexión MySQLi
  */
-class Connection {
+class DatabaseConnection {
 
     /**
      *

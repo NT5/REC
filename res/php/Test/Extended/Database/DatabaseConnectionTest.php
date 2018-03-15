@@ -10,7 +10,7 @@ class DatabaseConnectionTest extends TestCase {
 
     /**
      *
-     * @var Database\Connection
+     * @var Database\DatabaseConnection
      */
     private $dbc;
 
@@ -21,7 +21,7 @@ class DatabaseConnectionTest extends TestCase {
             );
         }
 
-        $this->dbc = new Database\Connection(Database\DatabaseConfig::fromIniFile(), FALSE);
+        $this->dbc = new Database\DatabaseConnection(Database\DatabaseConfig::fromIniFile(), FALSE);
     }
 
     public function testDatabaseConnection() {

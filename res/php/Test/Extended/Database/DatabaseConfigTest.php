@@ -18,7 +18,7 @@ class DatabaseConfigTest extends TestCase {
         $this->dbc = new DatabaseConfig();
     }
 
-    public function testPageConfigBasics() {
+    public function testDatabaseConfigBasics() {
         $Basics = $this->dbc->Basics();
 
         $Basics->setLog("foo");
