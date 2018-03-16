@@ -2,7 +2,7 @@
 
 namespace REC\Modules\Extended\Database;
 
-use REC\Modules;
+use REC\Modules\Basics;
 use REC\Modules\Extended\Database\DatabaseConfig;
 
 /**
@@ -10,16 +10,10 @@ use REC\Modules\Extended\Database\DatabaseConfig;
  * Instancia abstracta usada para almacenar y cargar
  * datos de configuración de la base de datos
  */
-class DatabaseConfig implements DatabaseConfig\DatabaseConfigInterface {
+class DatabaseConfig extends Basics\BasicsExtend implements DatabaseConfig\DatabaseConfigInterface {
 
     use DatabaseConfig\saveToIni,
         DatabaseConfig\fromIniFile;
-
-    /**
-     *
-     * @var Modules\Basics 
-     */
-    private $Basics;
 
     /**
      * @var string Dirección del servidor de la base de datos
@@ -47,10 +41,10 @@ class DatabaseConfig implements DatabaseConfig\DatabaseConfigInterface {
      * @param string $username Nombre de usuario de la base de datos
      * @param string $password Contraseña de conexion
      * @param string $database Base de datos que se usara
-     * @param Modules\Basics $Basics
+     * @param Basics $Basics
      */
-    public function __construct($server = NULL, $username = NULL, $password = NULL, $database = NULL, Modules\Basics $Basics = NULL) {
-        $this->Basics = ($Basics) ? : new Modules\Basics();
+    public function __construct($server = NULL, $username = NULL, $password = NULL, $database = NULL, Basics $Basics = NULL) {
+        parent::__construct($Basics);
 
         $this->server = ($server) ? : "localhost";
         $this->username = ($username) ? : "default";
@@ -58,14 +52,6 @@ class DatabaseConfig implements DatabaseConfig\DatabaseConfigInterface {
         $this->database = ($database) ? : "uml_rec";
 
         $this->Basics()->setLog("Nueva instancia de configuración de base de datos creada");
-    }
-
-    /**
-     * 
-     * @return Modules\Basics
-     */
-    public function Basics() {
-        return $this->Basics;
     }
 
     /**

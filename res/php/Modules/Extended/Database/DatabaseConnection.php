@@ -2,7 +2,7 @@
 
 namespace REC\Modules\Extended\Database;
 
-use REC\Modules;
+use REC\Modules\Basics;
 use REC\Modules\Basics\Error;
 use REC\Modules\Extended\Database;
 
@@ -10,13 +10,7 @@ use REC\Modules\Extended\Database;
  * @todo Documentar
  * Clase controladora de la conexión MySQLi
  */
-class DatabaseConnection {
-
-    /**
-     *
-     * @var Modules\Basics 
-     */
-    private $Basics;
+class DatabaseConnection extends Basics\BasicsExtend {
 
     /**
      * Instancia de configuración 
@@ -34,10 +28,10 @@ class DatabaseConnection {
      * Regresa instancia de conexión MySQLi además de la instancia de configuración
      * @param Database\DatabaseConfig $Config     
      * @param boolean $Connect
-     * @param Modules\Basics $Basics
+     * @param Basics $Basics
      */
-    public function __construct(Database\DatabaseConfig $Config = NULL, $Connect = TRUE, Modules\Basics $Basics = NULL) {
-        $this->Basics = ($Basics) ? : new Modules\Basics();
+    public function __construct(Database\DatabaseConfig $Config = NULL, $Connect = TRUE, Basics $Basics = NULL) {
+        parent::__construct($Basics);
 
         $this->Config = ($Config) ? : new Database\DatabaseConfig(NULL, NULL, NULL, NULL, $this->Basics());
 
@@ -46,14 +40,6 @@ class DatabaseConnection {
         if ($Connect) {
             $this->connect();
         }
-    }
-
-    /**
-     * 
-     * @return Modules\Basics
-     */
-    public function Basics() {
-        return $this->Basics;
     }
 
     /**

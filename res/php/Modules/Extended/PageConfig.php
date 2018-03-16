@@ -2,23 +2,17 @@
 
 namespace REC\Modules\Extended;
 
-use REC\Modules;
+use REC\Modules\Basics;
 use REC\Modules\Extended\PageConfig;
 
 /**
  * @todo Documentar
  * Clase que contiene metodos y variables de configuracion de la pagina
  */
-class PageConfig implements PageConfig\PageConfigInterface {
+class PageConfig extends Basics\BasicsExtend implements PageConfig\PageConfigInterface {
 
     use PageConfig\saveToIni,
         PageConfig\fromIniFile;
-
-    /**
-     *
-     * @var Modules\Basics 
-     */
-    private $Basics;
 
     /**
      * @var string Cadena de texto con el titulo de la pagina
@@ -44,14 +38,14 @@ class PageConfig implements PageConfig\PageConfigInterface {
 
     /**
      * Regresa instancia de configuración de la pagina web
-     * @param Modules\Basics $Basics
+     * @param Basics $Basics
      * @param string $page_title cadena de texto que se usa en los tags <b>title</b>
      * @param boolean $first_run Es la primera ejecucion de la pagina
      * @param string $page_domain
      * @param bool $enable_debug
      */
-    public function __construct(Modules\Basics $Basics = NULL, $page_title = NULL, $first_run = TRUE, $page_domain = NULL, $enable_debug = TRUE) {
-        $this->Basics = ($Basics) ? : new Modules\Basics();
+    public function __construct(Basics $Basics = NULL, $page_title = NULL, $first_run = TRUE, $page_domain = NULL, $enable_debug = TRUE) {
+        parent::__construct($Basics);
 
         $this->page_title = ($page_title) ? : "Default";
         $this->first_run = ($first_run == TRUE ? TRUE : FALSE);
@@ -59,14 +53,6 @@ class PageConfig implements PageConfig\PageConfigInterface {
         $this->enable_debug = ($enable_debug == TRUE ? TRUE : FALSE);
 
         $this->Basics()->setLog("Nueva instancia de configuración de pagina creada");
-    }
-
-    /**
-     * 
-     * @return Modules\Basics
-     */
-    public function Basics() {
-        return $this->Basics;
     }
 
     /**

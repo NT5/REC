@@ -2,20 +2,14 @@
 
 namespace REC\Modules\Extended;
 
-use REC\Modules;
+use REC\Modules\Basics;
 use REC\Modules\Extended\Database;
 
 /**
  * @todo Documentacion
  * Clase principal que controla y proporciona todos los métodos de la base de datos
  */
-class Database {
-
-    /**
-     *
-     * @var Modules\Basics 
-     */
-    private $Basics;
+class Database extends Basics\BasicsExtend {
 
     /**
      * @var Database\DatabaseConnection
@@ -25,22 +19,14 @@ class Database {
     /**
      * 
      * @param Database\DatabaseConnection $Connection
-     * @param Modules\Basics $Basics
+     * @param Basics $Basics
      */
-    public function __construct(Database\DatabaseConnection $Connection = NULL, Modules\Basics $Basics = NULL) {
-        $this->Basics = ($Basics) ? : new Modules\Basics();
+    public function __construct(Database\DatabaseConnection $Connection = NULL, Basics $Basics = NULL) {
+        parent::__construct($Basics);
 
         $this->Connection = ($Connection) ? : new Database\DatabaseConnection();
 
         $this->Basics()->setLog("Nueva instancia de base de datos creada");
-    }
-
-    /**
-     * 
-     * @return Modules\Basics 
-     */
-    public function Basics() {
-        return $this->Basics;
     }
 
     /**

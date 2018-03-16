@@ -2,18 +2,12 @@
 
 namespace REC\Modules\Extended;
 
-use REC\Modules;
+use REC\Modules\Basics;
 
 /**
  * @todo Documentar / Mejorar
  */
-class Cookies {
-
-    /**
-     *
-     * @var Modules\Basics
-     */
-    private $Basics;
+class Cookies extends Basics\BasicsExtend {
 
     /**
      *
@@ -30,10 +24,10 @@ class Cookies {
     /**
      * 
      * @param string $name
-     * @param Modules\Basics $Basics
+     * @param Basics $Basics
      */
-    public function __construct($name = 'rec', Modules\Basics $Basics = NULL) {
-        $this->Basics = ($Basics) ? : new Modules\Basics();
+    public function __construct($name = 'rec', Basics $Basics = NULL) {
+        parent::__construct($Basics);
 
         $name = ($name) ? : 'rec';
 
@@ -45,14 +39,6 @@ class Cookies {
 
         $this->cookie_data = $this->createMyCookie();
         $this->Basics()->setLog("Nueva instancia de Cookies creada");
-    }
-
-    /**
-     * 
-     * @return Modules\Basics
-     */
-    public function Basics() {
-        return $this->Basics;
     }
 
     /**
