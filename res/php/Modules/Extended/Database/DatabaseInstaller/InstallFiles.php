@@ -1,11 +1,15 @@
 <?php
 
-namespace REC1\Components\Database\Installer;
+namespace REC\Modules\Extended\Database\DatabaseInstaller;
+
+use REC\Modules\Extended\Database\DatabaseInstaller\InstallFiles;
 
 /**
  * @todo Documentar
  */
 class InstallFiles {
+
+    use InstallFiles\initFiles;
 
     /**
      *
@@ -18,35 +22,6 @@ class InstallFiles {
      * @var array 
      */
     private static $BaseDir = array(__DIR__, "..", "..", "..", "..", "..", "sql");
-
-    /**
-     * 
-     */
-    static function init() {
-
-        function addTable($file) {
-            $Tables = \REC1\Components\Database\Installer\InstallFilesArea::TABLES;
-
-            InstallFiles::addFile($Tables, \REC1\Util\Functions::parseDir(array_merge(InstallFiles::getBaseDir(), $file)));
-        }
-
-        function addData($file) {
-            $Data = \REC1\Components\Database\Installer\InstallFilesArea::DATA;
-
-            InstallFiles::addFile($Data, \REC1\Util\Functions::parseDir(array_merge(InstallFiles::getBaseDir(), $file)));
-        }
-
-        addTable(array("Tables.sql"));
-        addTable(array("formats", "Complementos.sql"));
-        addTable(array("formats", "Formato7.sql"));
-        addTable(array("formats", "Formato8.sql"));
-        addTable(array("formats", "Formato9.sql"));
-        addTable(array("formats", "Formato10.sql"));
-        addTable(array("formats", "Formato12.sql"));
-        addTable(array("formats", "Formato14.sql"));
-
-        addData(array("formats", "data", "Complementos.sql"));
-    }
 
     /**
      * 

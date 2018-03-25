@@ -1,6 +1,6 @@
 <?php
 
-namespace REC1\Components\Database\Installer;
+namespace REC\Modules\Extended\Database\DatabaseInstaller;
 
 /**
  * @todo Documentar
