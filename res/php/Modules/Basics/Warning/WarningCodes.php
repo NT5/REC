@@ -42,4 +42,14 @@ abstract class WarningCodes {
      */
     const CANT_LOAD_DATABASE_CONFIGURATION_FILE = 6;
 
+    /**
+     * 
+     */
+    const NO_TABLES_INSTALLATION = 7;
+
+    /**
+     * 
+     */
+    const CANT_EXECUTE_INSTALLATION_TABLE_COMMAND = 8;
+
 }

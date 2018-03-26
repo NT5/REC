@@ -18,4 +18,9 @@ abstract class ErrorCodes {
      */
     const CANT_CONNECT_MYSQLI_LINK = 1;
 
+    /**
+     * 
+     */
+    const INSTALLATION_TABLE_FILE_NOT_FOUND = 2;
+
 }
