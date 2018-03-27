@@ -24,13 +24,13 @@ abstract class ExtendedExtended extends BasicsExtend {
 
     /**
      * 
-     * @param Extended $Extended
      * @param Basics $Basics
+     * @param Extended $Extended
      */
-    public function __construct(Extended $Extended = NULL, Basics $Basics = NULL) {
+    public function __construct(Basics $Basics = NULL, Extended $Extended = NULL) {
         parent::__construct($Basics);
 
-        $this->Extended = ($Extended) ? : new Extended();
+        $this->Extended = ($Extended) ? : new Extended($this->Basics());
     }
 
 }

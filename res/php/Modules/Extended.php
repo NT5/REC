@@ -29,12 +29,12 @@ class Extended extends Basics\BasicsExtend implements Cookies\CookiesInterface, 
 
     /**
      * 
+     * Basics $Basics
      * @param Cookies $Cookies
      * @param PageConfig $PageConfig
-     * @param type $Database
-     * @param Basics $Basics
+     * @param Database $Database
      */
-    public function __construct(Cookies $Cookies = NULL, PageConfig $PageConfig = NULL, $Database = NULL, Basics $Basics = NULL) {
+    public function __construct(Basics $Basics = NULL, Cookies $Cookies = NULL, PageConfig $PageConfig = NULL, Database $Database = NULL) {
         parent::__construct($Basics);
 
         $this->Cookies = ($Cookies) ? : new Cookies(NULL, $this->Basics());
