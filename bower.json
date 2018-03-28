@@ -17,6 +17,6 @@
   ],
   "dependencies": {
     "jquery": "^3.2.1",
-    "materialize": "1.0.0-alpha.1"
+    "materialize": "v1.0.0-beta"
   }
 }

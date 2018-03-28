@@ -1,51 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        {% block head %}
+<html lang="en">
+    {% block head %}
+        <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <title>{{ rec.page.title }}</title>
-            {% if rec.page.url %}
-                <BASE href="http://{{ rec.page.url }}"/>
-            {% endif %}
 
             <!-- CSS  -->
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-            <link href="res/libs/materialize/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-            <link href="res/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-            <!-- Meta -->
-            <meta name="description" content=""/>
-            <meta name="author" content="Hendell Jonathan Porras Perez"/>
-
-            <link rel="icon" href="gfx/img/icon.png"/>
-        {% endblock %}
-    </head>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="libs/materialize/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+            <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        </head>
+    {% endblock %}
     <body>
         {% block navbar %}
-
+            {{ include('navbar.twig') }}
         {% endblock %}
-        <div class="container base-container">
-            {% block content %}
-                
-            {% endblock %}
-        </div><!-- /.container -->
+
+        {% block content %}
+            {{ include('container.twig') }}
+        {% endblock %}
+
         {% block footer %}
-
+            {{ include('footer.twig') }}
         {% endblock %}
 
-        <div class="fixed-action-btn">
-            <a class="tooltipped btn-floating btn-large waves-effect waves-light red" id="back-to-top" style="display: none;" data-position="left" data-delay="50" data-tooltip="Click aqui para ir arriba">
-                <i class="material-icons">navigation</i>
-            </a>
-        </div>
-
-        {% block scripts %}
-            <!--  Scripts-->
-            <script src="res/libs/jquery/jquery.min.js"></script>
-            <script src="res/libs/materialize/js/materialize.min.js"></script>
-            <script src="res/js/script.js"></script>
-        {% endblock %}
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="libs/materialize/js/materialize.min.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>

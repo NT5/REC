@@ -2,11 +2,12 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-Twig_Autoloader::register();
+use REC\Modules\WebPage;
 
+\Twig_Autoloader::register();
 
-$Page = new \REC\Pages\Home();
+$WebPage = new WebPage();
 
-echo $Page->display();
-
-print_r($Page->Basics()->getLogs());
+$WebPage
+        ->initPage()
+        ->display();

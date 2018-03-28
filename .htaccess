@@ -2,11 +2,15 @@ Options All -Indexes
 
 RewriteEngine On
 
-RewriteRule ^res/libs/jquery(/.*)?$ ./bower_components/jquery/dist/$1
-RewriteRule ^res/libs/materialize(/.*)?$ ./bower_components/materialize/dist/$1
+RewriteRule ^libs/jquery(/.*)?$ ./bower_components/jquery/dist/$1
+RewriteRule ^libs/materialize(/.*)?$ ./bower_components/materialize/dist/$1
+RewriteRule ^css(/.*)?$ ./res/css/$1
+RewriteRule ^js(/.*)?$ ./res/js/$1
 
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(\w+)*$ ./index.php?p=$1
 
 <Files config.ini>
     order allow,deny
