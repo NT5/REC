@@ -1,9 +1,17 @@
 Options All -Indexes
 
+RedirectMatch 403 ^/res/gfx/ps/.*$
+RedirectMatch 403 ^/res/php/.*$
+RedirectMatch 403 ^/res/sql/.*$
+RedirectMatch 403 ^/res/twig/.*$
+RedirectMatch 403 ^/vendor/.*$
+RedirectMatch 403 ^/bower_components/.*$
+
 RewriteEngine On
 
 RewriteRule ^libs/jquery(/.*)?$ ./bower_components/jquery/dist/$1
 RewriteRule ^libs/materialize(/.*)?$ ./bower_components/materialize/dist/$1
+RewriteRule ^img(/.*)?$ ./res/gfx/img/$1
 RewriteRule ^css(/.*)?$ ./res/css/$1
 RewriteRule ^js(/.*)?$ ./res/js/$1
 
