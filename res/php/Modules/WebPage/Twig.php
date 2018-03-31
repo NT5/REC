@@ -45,13 +45,13 @@ class Twig {
 
     /**
      * Función constructora de la clase. Establece todos los valores de configuracion por defecto.
+     * @param string $Twig_File
      * @param array $Twig_Folder
      * @param array $Twig_Cache
-     * @param string $Twig_File
      * Es necesario crear un objeto antes de ejecutar cualquier método
      * @example ./docs/examples/Components/Twig.md 2 2 Creacion del objeto Twig
      */
-    public function __construct($Twig_Folder = [__DIR__, "..", "..", "..", 'twig'], $Twig_Cache = [__DIR__, "..", "..", "..", "..", 'compilation_cache'], $Twig_File = 'base.twig') {
+    public function __construct($Twig_File = 'base.twig', $Twig_Folder = [__DIR__, "..", "..", "..", 'twig'], $Twig_Cache = [__DIR__, "..", "..", "..", "..", 'compilation_cache']) {
         $this->Twig_Template_Folder = Functions::parseDir($Twig_Folder);
         $this->Template_File = $Twig_File;
         $this->Twig_Vars = [];

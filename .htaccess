@@ -4,8 +4,8 @@ RedirectMatch 403 ^/res/gfx/ps/.*$
 RedirectMatch 403 ^/res/php/.*$
 RedirectMatch 403 ^/res/sql/.*$
 RedirectMatch 403 ^/res/twig/.*$
+RedirectMatch 403 ^/compilation_cache/.*$
 RedirectMatch 403 ^/vendor/.*$
-RedirectMatch 403 ^/bower_components/.*$
 
 RewriteEngine On
 

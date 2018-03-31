@@ -2,12 +2,13 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use REC\Modules\WebPage;
+use REC\Application\Web\WebRoute;
+use REC\Pages;
 
 \Twig_Autoloader::register();
 
-$WebPage = new WebPage();
+$Web = new WebRoute('p', Pages\Home::class);
 
-$WebPage
-        ->initPage()
-        ->display();
+$Web->addRoute(new WebRoute('home', Pages\Home_1::class, $Web->Extended()));
+
+$Web->init();

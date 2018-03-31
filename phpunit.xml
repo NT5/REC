@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" verbose="true" convertNoticesToExceptions="false">
+<phpunit bootstrap="vendor/autoload.php" verbose="true" convertNoticesToExceptions="false" stderr="true">
     <php>
         <ini name="date.timezone" value="GMT"/>
     </php>
@@ -19,13 +19,14 @@
             <directory>res/php/Test/Util</directory>
         </testsuite>
     </testsuites>
+    <testsuites>
+        <testsuite name="Application">
+            <directory>res/php/Test/Application</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">res/php/Test</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="docs/coverage" lowUpperBound="35"
-             highLowerBound="70"/>
-    </logging>
 </phpunit>
