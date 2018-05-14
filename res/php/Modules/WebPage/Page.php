@@ -6,12 +6,11 @@ use REC\Modules\Util\Functions;
 use REC\Modules\Extended;
 use REC\Modules\Extended\ExtendedExtended;
 use REC\Modules\WebPage\Twig;
-use REC\Modules\WebPage\Page\PageInterface;
 
 /**
  * @todo Documentar
  */
-abstract class Page extends ExtendedExtended implements PageInterface {
+class Page extends ExtendedExtended {
 
     /**
      *
@@ -47,6 +46,18 @@ abstract class Page extends ExtendedExtended implements PageInterface {
         $this->Twig = ($Twig_Class) ? : new Twig();
 
         $this->setFilters();
+    }
+
+    public function CheckPost() {
+        
+    }
+
+    public function initVars() {
+        
+    }
+
+    public function initTwigTemplate() {
+        
     }
 
     /**

@@ -16,8 +16,6 @@ class WebRouteTest extends TestCase {
 
     public function testWebRoute() {
         $Route = (new WebRoute())->init();
-
-        echo $Route->getPage()->display();
     }
 
 }

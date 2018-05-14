@@ -21,14 +21,6 @@ class Home_1 extends Page {
         $this->initVars();
     }
 
-    public function CheckPost() {
-        
-    }
-
-    public function initTwigTemplate() {
-        
-    }
-
     public function initVars() {
         $this->setVar('rec.page.title', 'Pagina de prueba 2');
     }
