@@ -19,6 +19,7 @@
         {% endblock %}
 
         {% block content %}
+            {{ include('debug/LoggerTable.twig') }}
             {{ include('container.twig') }}
         {% endblock %}
 

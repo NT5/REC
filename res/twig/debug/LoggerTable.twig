@@ -1,0 +1,45 @@
+<ul class="collapsible" data-collapsible="expandable">
+    <li>
+        <div class="collapsible-header">
+            <i class="material-icons">broken_image</i>
+            {{ rec.page.title }} | Logs
+        </div>
+        <div class="collapsible-body">
+            <ul class="collapsible popout" data-collapsible="expandable">
+                {% for log_area, log_contents in rec.debug.logs %}
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">compare_arrows</i>
+                            Area Code: {{ log_area }}
+                        </div>
+                        <div class="collapsible-body">
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Function</th>
+                                        <th>Microtime</th>
+                                        <th>Date</th>
+                                        <th>Text</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for log_content in log_contents %}
+                                        <tr>
+                                            <td>{{ log_content.class|raw }}</td>
+                                            <td>{{ log_content.function|raw }}</td>
+                                            <td>{{ log_content.microtime|raw }}</td>
+                                            <td>{{ log_content.date|raw }}</td>
+                                            <td>{{ log_content.text|raw }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+</ul>

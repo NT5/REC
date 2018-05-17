@@ -7,4 +7,6 @@ use REC\Application\Web;
 \Twig_Autoloader::register();
 
 $Web = (new Web())
-        ->app();
+        ->app()
+        ->getRoute()
+        ->display();

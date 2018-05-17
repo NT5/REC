@@ -125,7 +125,7 @@ class WebRoute extends ExtendedExtended {
             $PageClass = $this->PagaClass;
             $this->Page = new $PageClass($this->Extended());
 
-            $this->display();
+            // $this->display();
         }
         return $this;
     }

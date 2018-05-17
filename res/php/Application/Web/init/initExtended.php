@@ -40,14 +40,14 @@ trait initExtended {
     }
 
     private function initPageConfig() {
-        $inifile = Functions::parseDir([__DIR__, "..", "..", "..", "config.ini"]);
+        $inifile = Functions::parseDir([__DIR__, str_repeat(".." . DIRECTORY_SEPARATOR, 5), "config.ini"]);
         $PageConfig = PageConfig::fromIniFile($this->getBasics(), $inifile);
         return $PageConfig;
     }
 
     private function initDatabase() {
         $Basics = $this->getBasics();
-        $inifile = Functions::parseDir([__DIR__, "..", "..", "..", "config.ini"]);
+        $inifile = Functions::parseDir([__DIR__, str_repeat(".." . DIRECTORY_SEPARATOR, 5), "config.ini"]);
 
         $DatabaseConf = Database\DatabaseConfig::fromIniFile($Basics, $inifile);
         $DatabaseConn = new Database\DatabaseConnection($DatabaseConf, TRUE, $Basics);

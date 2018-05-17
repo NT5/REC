@@ -3,6 +3,9 @@
 namespace REC\Application;
 
 use REC\Application\Web\init;
+use REC\Application\Web\WebRoute;
+use REC\Modules\Basics;
+use REC\Modules\Extended;
 
 class Web {
 
@@ -28,10 +31,16 @@ class Web {
      */
     private $Route;
 
+    /**
+     * 
+     * @return \REC\Application\Web
+     */
     public function app() {
         $this->initBasics();
         $this->initExtended();
         $this->initRoute();
+
+        return $this;
     }
 
     /**

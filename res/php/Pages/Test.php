@@ -8,21 +8,20 @@ use REC\Modules\WebPage\Page;
 /**
  * 
  */
-class Home_1 extends Page {
+class Test extends Page {
 
     /**
      * 
      * @param Extended $Extended
      */
     public function __construct(Extended $Extended = NULL) {
-        parent::__construct($Extended, "Home");
+        parent::__construct($Extended, "Test");
 
-        $this->initTwigTemplate();
         $this->initVars();
     }
 
     public function initVars() {
-        $this->setVar('rec.page.title', 'Pagina de prueba 2');
+        $this->setVar('rec.page.title', 'Test Page');
     }
 
 }
