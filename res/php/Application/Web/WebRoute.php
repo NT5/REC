@@ -4,7 +4,6 @@ namespace REC\Application\Web;
 
 use REC\Pages;
 use REC\Modules\WebPage\Page;
-use REC\Modules\WebPage\Twig;
 use REC\Modules\Extended\ExtendedExtended;
 use REC\Modules\Extended;
 
@@ -14,7 +13,7 @@ class WebRoute extends ExtendedExtended {
      *
      * @var Page
      */
-    private $Page;
+    private static $Page;
 
     /**
      *
@@ -53,7 +52,10 @@ class WebRoute extends ExtendedExtended {
      * @return \REC\Application\Web\WebRoute
      */
     public function addRoute(WebRoute $Route) {
+        $b = $this->Extended()->Basics();
+
         $this->Route[$Route->getUrl()] = $Route;
+        $b->setLog("Nuevo Route añadido URL: %s | PageClass: %s", $Route->getUrl(), $Route->getPageClass());
         return $this;
     }
 
@@ -63,6 +65,14 @@ class WebRoute extends ExtendedExtended {
      */
     public function getUrl() {
         return $this->Url;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getPageClass() {
+        return $this->PagaClass;
     }
 
     /**
@@ -86,29 +96,8 @@ class WebRoute extends ExtendedExtended {
      * 
      * @return Page
      */
-    public function getPage() {
-        return $this->Page;
-    }
-
-    /**
-     * 
-     * @return Twig
-     */
-    public function getTwig() {
-        $Page = $this->getPage();
-        return ($Page ? $Page->getTwig() : NULL);
-    }
-
-    /**
-     * 
-     * @return WebPage
-     */
-    public function display() {
-        $Page = $this->getPage();
-
-        echo ($Page ? $Page->display() : "No page class found");
-
-        return $this;
+    public static function getPage() {
+        return self::$Page;
     }
 
     /**
@@ -116,16 +105,26 @@ class WebRoute extends ExtendedExtended {
      * @return \REC\Application\Web\WebRoute
      */
     public function init() {
+        $b = $this->Extended()->Basics();
+        $b->setLog("[%s] Init webroute...", $this->getPageClass());
+
         $url = filter_input(INPUT_GET, $this->getUrl());
         $Route = $this->getRoutes();
 
         if (array_key_exists($url, $Route)) {
             $Route[$url]->init();
         } else {
-            $PageClass = $this->PagaClass;
-            $this->Page = new $PageClass($this->Extended());
 
-            // $this->display();
+            if (!self::getPage()) {
+                $b->setLog("No pageclass found, create new");
+            } else {
+                $b->setLog("Pageclass found %s, overwrite...", self::getPage()->getPageTitle());
+            }
+
+            $PageClass = $this->getPageClass();
+            self::$Page = new $PageClass($this->Extended());
+
+            $b->setLog("WebRoute init! working Page: %s", $this->getPageClass());
         }
         return $this;
     }

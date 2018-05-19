@@ -38,25 +38,31 @@ trait initRoute {
 
         $Route
                 ->addRoute(new WebRoute('home', Pages\Home::class, $Ex))
+                ->addRoute(new WebRoute('install', Pages\Install::class, $Ex))
                 ->addRoute(new WebRoute('test', Pages\Test::class, $Ex));
 
-        $Route->init();
+        $this->Route = $Route->init();
 
-        $this->Route = $Route;
-        $this->initVars();
+        $this->initDisplay();
     }
 
-    private function initVars() {
-        $Twig = $this->getRoute()->getTwig();
-        $PageConfig = $this->getExtended()->PageConfig();
+    private function initDisplay() {
+        $Page = $this->getRoute()->getPage();
+        if ($Page) {
+            $Twig = $Page->getTwig();
+            $PageConfig = $this->getExtended()->PageConfig();
 
-        $Twig->setVars([
-            'rec.page.title' => Functions::strFormat("%config_title | %config_var", array(
-                'config_title' => $PageConfig->getPageTitle(),
-                'config_var' => $Twig->getVar('rec.page.title')
-            )),
-            'rec.debug.logs' => $this->getLogs()
-        ]);
+            $Twig->setVars([
+                'rec.page.title' => Functions::strFormat("%config_title | %config_var", array(
+                    'config_title' => $PageConfig->getPageTitle(),
+                    'config_var' => $Twig->getVar('rec.page.title')
+                )),
+                'rec.debug.logs' => $this->getLogs()
+            ]);
+            echo $Page->display();
+        } else {
+            echo "No pageclass found.";
+        }
     }
 
 }
