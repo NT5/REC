@@ -3,6 +3,7 @@
 namespace REC\Application;
 
 use REC\Application\Web\init;
+use REC\Application\Web\dispose;
 use REC\Application\Web\WebRoute;
 use REC\Modules\Basics;
 use REC\Modules\Extended;
@@ -11,7 +12,13 @@ class Web {
 
     use init\initRoute,
         init\initBasics,
-        init\initExtended;
+        init\initExtended,
+        dispose\disposeExtended;
+
+    /**
+     * @var float Guarda el tiempo de ejecución en milisegundos
+     */
+    private $ExecutionTime = 0;
 
     /**
      *
@@ -36,10 +43,15 @@ class Web {
      * @return \REC\Application\Web
      */
     public function app() {
+        $this->ExecutionTime = microtime(true);
+
         $this->initBasics();
         $this->initExtended();
         $this->initRoute();
 
+        $this->disposeExtended();
+
+        $this->initDisplay();
         return $this;
     }
 

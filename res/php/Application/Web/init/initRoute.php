@@ -16,6 +16,11 @@ trait initRoute {
     private $Route;
 
     /**
+     * @var float
+     */
+    private $ExecutionTime;
+
+    /**
      * 
      * @return Extended
      */
@@ -43,7 +48,7 @@ trait initRoute {
 
         $this->Route = $Route->init();
 
-        $this->initDisplay();
+        // $this->initDisplay();
     }
 
     private function initDisplay() {
@@ -57,7 +62,8 @@ trait initRoute {
                     'config_title' => $PageConfig->getPageTitle(),
                     'config_var' => $Twig->getVar('rec.page.title')
                 )),
-                'rec.debug.logs' => $this->getLogs()
+                'rec.debug.logs' => $this->getLogs(),
+                'rec.debug.executiontime' => ( microtime(true) - $this->ExecutionTime )
             ]);
             echo $Page->display();
         } else {
