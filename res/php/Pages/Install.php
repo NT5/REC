@@ -18,7 +18,7 @@ class Install extends Page {
     }
 
     public function initVars() {
-        $this->setVar('rec.page.title', 'Instalacion');
+        $this->setVar('rec.page.title', 'Pagina de Instalacion');
     }
 
 }
