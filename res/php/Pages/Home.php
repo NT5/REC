@@ -21,7 +21,7 @@ class Home extends Page {
     }
 
     public function initVars() {
-        $this->setVar('rec.page.title', 'Pagina de prueba');
+        $this->setVar('rec.page.title', 'Pagina de inicio');
     }
 
 }
