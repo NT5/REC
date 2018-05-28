@@ -18,6 +18,7 @@ class DatabaseInstaller extends Extended\ExtendedExtended {
      */
     public function __construct(Extended $Extended = NULL) {
         parent::__construct($Extended);
+        $Extended->Basics()->setLog("Nueva instancia de instalacion creada");
     }
 
     /**

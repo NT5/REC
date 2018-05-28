@@ -19,7 +19,7 @@ class WebRoute extends ExtendedExtended {
      *
      * @var string
      */
-    private $PagaClass;
+    private $PageClass;
 
     /**
      *
@@ -43,7 +43,7 @@ class WebRoute extends ExtendedExtended {
         parent::__construct($Extended);
 
         $this->Url = $Url;
-        $this->PagaClass = $PageClass;
+        $this->PageClass = $PageClass;
     }
 
     /**
@@ -72,7 +72,7 @@ class WebRoute extends ExtendedExtended {
      * @return string
      */
     public function getPageClass() {
-        return $this->PagaClass;
+        return $this->PageClass;
     }
 
     /**
@@ -102,16 +102,17 @@ class WebRoute extends ExtendedExtended {
 
     /**
      * 
+     * @param boolean $SubRoute
      * @return \REC\Application\Web\WebRoute
      */
-    public function init() {
+    public function init($SubRoute = TRUE) {
         $b = $this->Extended()->Basics();
         $b->setLog("[%s] Init webroute...", $this->getPageClass());
 
         $url = filter_input(INPUT_GET, $this->getUrl());
         $Route = $this->getRoutes();
 
-        if (array_key_exists($url, $Route)) {
+        if ($SubRoute && array_key_exists($url, $Route)) {
             $Route[$url]->init();
         } else {
 
@@ -126,6 +127,7 @@ class WebRoute extends ExtendedExtended {
 
             $b->setLog("WebRoute init! working Page: %s", $this->getPageClass());
         }
+
         return $this;
     }
 

@@ -11,6 +11,7 @@ use REC\Modules\Extended;
 class Web {
 
     use init\initRoute,
+        init\initDisplay,
         init\initBasics,
         init\initExtended,
         dispose\disposeExtended;

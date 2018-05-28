@@ -16,5 +16,6 @@ class Functions {
         Functions\set_array_value,
         Functions\get_array_value,
         Functions\checkArray,
-        Functions\integerToRoman;
+        Functions\integerToRoman,
+        Functions\redirect;
 }
