@@ -24,11 +24,4 @@ trait initBasics {
         $this->Basics = $Basics;
     }
 
-    /**
-     * @return \REC\Modules\Basics\Logger\Log[] Lista de registros
-     */
-    public function getLogs() {
-        return $this->getBasics()->getLogs();
-    }
-
 }

@@ -34,11 +34,6 @@ trait initRoute {
      */
     public abstract function getRoute();
 
-    /**
-     * @return \REC\Modules\Basics\Logger\Log[] Lista de registros
-     */
-    public abstract function getLogs();
-
     private function initRoute() {
         $Route = new WebRoute('p', Pages\Home::class, $this->getExtended());
         $Ex = $Route->Extended();
@@ -48,9 +43,9 @@ trait initRoute {
                 ->addRoute(new WebRoute('install', Pages\Install::class, $Ex))
                 ->addRoute(new WebRoute('test', Pages\Test::class, $Ex));
 
-        $this->Route = $Route;
+        $this->Route = $Route->init();
 
-        $this->checkRoute();
+        // $this->checkRoute();
     }
 
 }

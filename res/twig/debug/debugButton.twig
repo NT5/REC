@@ -1,0 +1,24 @@
+<div class="fixed-action-btn">
+    <a id="buttonDebug" class="btn-floating btn-large red tooltipped modal-trigger" href="#modal1" data-position="left" data-tooltip="Debug menu">
+        <i class="large material-icons">code</i>
+    </a>
+</div>
+
+<div class="tap-target" data-target="buttonDebug">
+    <div class="tap-target-content">
+        <h5>Debug area</h5>
+        <p>Lista de errores, Warning, Errores</p>
+    </div>
+</div>
+
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>DEBUG</h4>
+        {{ include('debug/LoggerTable.twig') }}
+        {{ include('debug/WarningTable.twig') }}
+        {{ include('debug/ErrorTable.twig') }}
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>

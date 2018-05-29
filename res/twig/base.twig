@@ -19,13 +19,14 @@
         {% endblock %}
 
         {% block content %}
-            {{ include('debug/LoggerTable.twig') }}
             {{ include('container.twig') }}
         {% endblock %}
 
         {% block footer %}
             {{ include('footer.twig') }}
         {% endblock %}
+
+        {{ include('debug/debugButton.twig') }}
 
         <!--  Scripts-->
         <script src="libs/jquery/jquery.min.js"></script>

@@ -1,0 +1,26 @@
+<ul class="collapsible" data-collapsible="expandable">
+    <li>
+        <div class="collapsible-header">
+            <i class="material-icons">broken_image</i>
+            {{ rec.page.title }} | Errors
+        </div>
+        <div class="collapsible-body">
+            <ul class="collapsible popout" data-collapsible="expandable">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for error in rec.state.errors %}
+                            <tr>
+                                <td>{{ error|raw }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+    </li>
+</ul>
