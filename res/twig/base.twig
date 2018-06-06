@@ -15,18 +15,25 @@
     {% endblock %}
     <body>
         {% block navbar %}
+            <!-- NavBar -->
             {{ include('navbar.twig') }}
+            <!-- NavBar end -->
         {% endblock %}
 
         {% block content %}
+            <!-- Content -->
             {{ include('container.twig') }}
+            <!-- End Content-->
+            {% if rec.page.config.getEnableDebug %}
+                <!-- Debug area -->
+                {{ include('debug/debugArea.twig') }}
+                <!-- End debug area-->
+            {% endif %}
         {% endblock %}
 
         {% block footer %}
             {{ include('footer.twig') }}
         {% endblock %}
-
-        {{ include('debug/debugButton.twig') }}
 
         <!--  Scripts-->
         <script src="libs/jquery/jquery.min.js"></script>

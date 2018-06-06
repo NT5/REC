@@ -5,11 +5,8 @@ namespace REC\Application\Web\init;
 use REC\Application\Web\WebRoute;
 use REC\Modules\Extended;
 use REC\Pages;
-use REC\Application\Web\check;
 
 trait initRoute {
-
-    use check\checkRoute;
 
     /**
      *
@@ -44,8 +41,6 @@ trait initRoute {
                 ->addRoute(new WebRoute('test', Pages\Test::class, $Ex));
 
         $this->Route = $Route->init();
-
-        // $this->checkRoute();
     }
 
 }

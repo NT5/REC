@@ -44,7 +44,8 @@ trait initDisplay {
                 'rec.debug.logs' => $b->getLogs(),
                 'rec.debug.executiontime' => ( microtime(true) - $this->ExecutionTime ),
                 'rec.state.errors' => $b->getErrors(),
-                'rec.state.warnings' => $b->getWarnings()
+                'rec.state.warnings' => $b->getWarnings(),
+                'rec.page.config' => $PageConfig
             ]);
             echo $Page->display();
         } else {
